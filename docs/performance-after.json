@@ -1,0 +1,139 @@
+[
+  {
+    "route": "/",
+    "width": 1440,
+    "scroll": 1425,
+    "lcpMs": 2344,
+    "cls": 0.0006899884349030471,
+    "resources": [
+      {
+        "url": "/assets/index-CXJZNOR3.js",
+        "bytes": 112786,
+        "type": "script"
+      },
+      {
+        "url": "/assets/index-GNHCIMsK.css",
+        "bytes": 8195,
+        "type": "link"
+      },
+      {
+        "url": "/assets/Home-jVsyaLVz.js",
+        "bytes": 44924,
+        "type": "script"
+      },
+      {
+        "url": "/optimized/mge-brand-logo-61cb2e7de8a2-160.webp",
+        "bytes": 4198,
+        "type": "img"
+      },
+      {
+        "url": "/mge-favicon.svg",
+        "bytes": 613,
+        "type": "other"
+      },
+      {
+        "url": "/optimized/mge-phone-podium-0676f167d3a2-1280.webp",
+        "bytes": 63730,
+        "type": "img"
+      },
+      {
+        "url": "/optimized/hp-elitebook-silver-3ade1324eb70-320.webp",
+        "bytes": 9370,
+        "type": "img"
+      },
+      {
+        "url": "/optimized/oraimo-powernova-b31-180b2913cc80-320.webp",
+        "bytes": 9994,
+        "type": "img"
+      },
+      {
+        "url": "/optimized/bose-quietcomfort-ultra-c2b21ae950cf-320.webp",
+        "bytes": 10294,
+        "type": "img"
+      },
+      {
+        "url": "/optimized/aimb-g2-pro-glasses-0464912e55fa-320.webp",
+        "bytes": 11592,
+        "type": "img"
+      }
+    ],
+    "broken": [],
+    "totalBytes": 275696
+  },
+  {
+    "route": "/shop",
+    "width": 390,
+    "scroll": 390,
+    "lcpMs": 624,
+    "cls": 0,
+    "resources": [
+      {
+        "url": "/assets/index-CXJZNOR3.js",
+        "bytes": 112786,
+        "type": "script"
+      },
+      {
+        "url": "/assets/index-GNHCIMsK.css",
+        "bytes": 8195,
+        "type": "link"
+      },
+      {
+        "url": "/optimized/mge-brand-logo-61cb2e7de8a2-160.webp",
+        "bytes": 4198,
+        "type": "img"
+      },
+      {
+        "url": "/optimized/hp-elitebook-silver-3ade1324eb70-320.webp",
+        "bytes": 9370,
+        "type": "img"
+      },
+      {
+        "url": "/optimized/oraimo-powernova-b31-180b2913cc80-320.webp",
+        "bytes": 9994,
+        "type": "img"
+      },
+      {
+        "url": "/optimized/bose-quietcomfort-ultra-c2b21ae950cf-320.webp",
+        "bytes": 10294,
+        "type": "img"
+      },
+      {
+        "url": "/optimized/aimb-g2-pro-glasses-0464912e55fa-320.webp",
+        "bytes": 11592,
+        "type": "img"
+      },
+      {
+        "url": "/optimized/baseus-usb-a-usb-c-2m-4262ccac1298-320.webp",
+        "bytes": 11562,
+        "type": "img"
+      },
+      {
+        "url": "/optimized/feudz-type-c-earphones-9ad008d01ba2-320.webp",
+        "bytes": 8500,
+        "type": "img"
+      },
+      {
+        "url": "/optimized/live-85nc-headphones-90f487231330-320.webp",
+        "bytes": 12044,
+        "type": "img"
+      },
+      {
+        "url": "/optimized/hp-deskjet-1115-96d95d518e33-320.webp",
+        "bytes": 10582,
+        "type": "img"
+      },
+      {
+        "url": "/optimized/hp-convertible-black-633defc0f166-320.webp",
+        "bytes": 7688,
+        "type": "img"
+      },
+      {
+        "url": "/optimized/xj08-handheld-fan-4625b0d2e9ce-320.webp",
+        "bytes": 7884,
+        "type": "img"
+      }
+    ],
+    "broken": [],
+    "totalBytes": 224689
+  }
+]

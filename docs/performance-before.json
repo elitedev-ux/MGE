@@ -1,0 +1,164 @@
+[
+  {
+    "route": "/",
+    "width": 1440,
+    "scroll": 1425,
+    "lcpMs": 3728,
+    "cls": 0.0006899884349030471,
+    "resources": [
+      {
+        "url": "/assets/index-D9PhTwBf.js",
+        "bytes": 163380,
+        "type": "script"
+      },
+      {
+        "url": "/assets/index-Bt7iFxKu.css",
+        "bytes": 9339,
+        "type": "link"
+      },
+      {
+        "url": "/mge-brand-logo.png",
+        "bytes": 647923,
+        "type": "img"
+      },
+      {
+        "url": "/mge-phone-podium.png",
+        "bytes": 1521655,
+        "type": "img"
+      },
+      {
+        "url": "/products/hp-elitebook-silver.png",
+        "bytes": 1866340,
+        "type": "img"
+      },
+      {
+        "url": "/products/oraimo-powernova-b31.png",
+        "bytes": 1634187,
+        "type": "img"
+      },
+      {
+        "url": "/products/bose-quietcomfort-ultra.png",
+        "bytes": 1968794,
+        "type": "img"
+      },
+      {
+        "url": "/products/aimb-g2-pro-glasses.png",
+        "bytes": 1637167,
+        "type": "img"
+      },
+      {
+        "url": "/mge-favicon.svg",
+        "bytes": 613,
+        "type": "other"
+      }
+    ],
+    "broken": [],
+    "totalBytes": 9449398
+  },
+  {
+    "route": "/shop",
+    "width": 390,
+    "scroll": 390,
+    "lcpMs": 1816,
+    "cls": 0.0003796693743704354,
+    "resources": [
+      {
+        "url": "/assets/index-D9PhTwBf.js",
+        "bytes": 163380,
+        "type": "script"
+      },
+      {
+        "url": "/assets/index-Bt7iFxKu.css",
+        "bytes": 9339,
+        "type": "link"
+      },
+      {
+        "url": "/mge-brand-logo.png",
+        "bytes": 647923,
+        "type": "img"
+      },
+      {
+        "url": "/products/hp-elitebook-silver.png",
+        "bytes": 1866340,
+        "type": "img"
+      },
+      {
+        "url": "/products/oraimo-powernova-b31.png",
+        "bytes": 1634187,
+        "type": "img"
+      },
+      {
+        "url": "/products/bose-quietcomfort-ultra.png",
+        "bytes": 1968794,
+        "type": "img"
+      },
+      {
+        "url": "/products/aimb-g2-pro-glasses.png",
+        "bytes": 1637167,
+        "type": "img"
+      },
+      {
+        "url": "/products/baseus-usb-a-usb-c-2m.png",
+        "bytes": 1906641,
+        "type": "img"
+      },
+      {
+        "url": "/products/feudz-type-c-earphones.png",
+        "bytes": 1409613,
+        "type": "img"
+      },
+      {
+        "url": "/products/live-85nc-headphones.png",
+        "bytes": 1865521,
+        "type": "img"
+      },
+      {
+        "url": "/products/hp-deskjet-1115.png",
+        "bytes": 1802789,
+        "type": "img"
+      },
+      {
+        "url": "/products/hp-convertible-black.png",
+        "bytes": 2073046,
+        "type": "img"
+      },
+      {
+        "url": "/products/xj08-handheld-fan.png",
+        "bytes": 1610971,
+        "type": "img"
+      },
+      {
+        "url": "/products/apple-magsafe-charger.png",
+        "bytes": 1403739,
+        "type": "img"
+      },
+      {
+        "url": "/products/mj30-ring-light.png",
+        "bytes": 1628527,
+        "type": "img"
+      },
+      {
+        "url": "/products/beats-studio-pro-kim.png",
+        "bytes": 2093606,
+        "type": "img"
+      },
+      {
+        "url": "/products/dualshock-3-black.png",
+        "bytes": 1725460,
+        "type": "img"
+      },
+      {
+        "url": "/products/35w-charger-lightning-bundle.png",
+        "bytes": 1508823,
+        "type": "img"
+      },
+      {
+        "url": "/products/hp-business-black-silver.png",
+        "bytes": 1908539,
+        "type": "img"
+      }
+    ],
+    "broken": [],
+    "totalBytes": 28864405
+  }
+]

@@ -1,0 +1,569 @@
+[
+  {
+    "index": 1,
+    "file": "001B35A1-5C5B-4054-8BAB-DCF0C5F36DD0.png",
+    "productId": "baseus-usb-a-usb-c-2m",
+    "duplicate": false,
+    "sha256": "441e493fc65987657ee065ea632a86f3d4574c832f236c5c7524e9aeb1f83a30"
+  },
+  {
+    "index": 2,
+    "file": "00F88E1F-E872-411F-A6D5-A1DE3DEC55C8.png",
+    "productId": "bose-quietcomfort-ultra",
+    "duplicate": false,
+    "sha256": "efb4097cd0970e14354ac1b335650b5c5604e4ad617c0bbab2ad0174c3bc12ef"
+  },
+  {
+    "index": 3,
+    "file": "086400EA-AA25-4F5B-8D8C-A6370BC73E40.png",
+    "productId": "feudz-type-c-earphones",
+    "duplicate": false,
+    "sha256": "a0a0e696139a5f6af566dad6f7bad05bb73816bbbe00cccff0d95009810df1b1"
+  },
+  {
+    "index": 4,
+    "file": "0921F4FD-A5CB-4BA6-8944-A73A1D58397E.png",
+    "productId": "live-85nc-headphones",
+    "duplicate": false,
+    "sha256": "ec5feb3155bba165efa44d4b07eb6be1bda3e24337a92ab0f6e8f508e0043042"
+  },
+  {
+    "index": 5,
+    "file": "0D6D2863-E4EB-4182-B75C-E2E086D4581E.png",
+    "productId": "hp-deskjet-1115",
+    "duplicate": false,
+    "sha256": "c40844f8e8be7982587870783efd85cc31a27859727435d1c85d68a98d5b57d9"
+  },
+  {
+    "index": 6,
+    "file": "116AB608-384F-44E5-89E9-52904DEC8718.png",
+    "productId": "hp-convertible-black",
+    "duplicate": false,
+    "sha256": "43f84e6fc3b139ec743e7ba093a6f6e4753e4c7244e349239e997661880f845f"
+  },
+  {
+    "index": 7,
+    "file": "15FEC977-057A-4D27-AD7B-D2A418062DB7.png",
+    "productId": "xj08-handheld-fan",
+    "duplicate": false,
+    "sha256": "67eb7eec04a814cb366effc94c2b85a7ef3f273b7502ca8d55bf81bb4aa484af"
+  },
+  {
+    "index": 8,
+    "file": "16486207-94CE-44AF-9C97-FAF1F2248EA1.png",
+    "productId": "apple-magsafe-charger",
+    "duplicate": false,
+    "sha256": "cd08e4308302ffa93ddc4241b76ffcaafb95e1e226c1fbfbdf309922e0048e29"
+  },
+  {
+    "index": 9,
+    "file": "16DE4F66-DBFE-4832-B859-DAB3F8BC906B.png",
+    "productId": "hp-elitebook-silver",
+    "duplicate": false,
+    "sha256": "2bf1e565db10d453d9342d5439ba76fa83e661637c584114d120886ab5c8fcd9"
+  },
+  {
+    "index": 10,
+    "file": "21E479B2-B2EC-474A-AEFB-36B12A84FB26.png",
+    "productId": "mj30-ring-light",
+    "duplicate": false,
+    "sha256": "b83b0e0eb0ee8a86efee37f23f2209ea3b8d4686c2851598a28a94e54c0ec25d"
+  },
+  {
+    "index": 11,
+    "file": "26169E36-5316-4A0D-B663-D93F8F72495B.png",
+    "productId": "beats-studio-pro-kim",
+    "duplicate": false,
+    "sha256": "a0bca113434df6d049023e5a4960b0a0589bbebca2761186348f92fa0a0348af"
+  },
+  {
+    "index": 12,
+    "file": "28A54B29-995C-446A-B16A-377E718D4FE6.png",
+    "productId": "dualshock-3-black",
+    "duplicate": false,
+    "sha256": "eb60dfb4af0bdc78071cfbca83041759ae477e485889f0e0747891cf01a4f699"
+  },
+  {
+    "index": 13,
+    "file": "2FC63915-E9E7-45D5-ACEE-74595428D182.png",
+    "productId": "35w-charger-lightning-bundle",
+    "duplicate": false,
+    "sha256": "f67f9b7306ad2aed52987a85978e0210714af61e38ae43308d40469189a7db96"
+  },
+  {
+    "index": 14,
+    "file": "39849350-0F32-444B-8A69-32435DC5A284.png",
+    "productId": "hp-business-black-silver",
+    "duplicate": false,
+    "sha256": "1dd964523cb74381207baccc595beafeec3a1c53bb841266236432419fc5f8a4"
+  },
+  {
+    "index": 15,
+    "file": "39849350-0F32-444B-8A69-32435DC5A284-1.png",
+    "productId": "hp-business-black-silver",
+    "duplicate": true,
+    "sha256": "1dd964523cb74381207baccc595beafeec3a1c53bb841266236432419fc5f8a4"
+  },
+  {
+    "index": 16,
+    "file": "3A0379C9-EE64-4950-A68A-CD275C38026A.png",
+    "productId": "f11-2-wireless-microphones",
+    "duplicate": false,
+    "sha256": "12681bf36d67b703c644be17622853ecae796d7459f96f10c0d32ecc94967aaf"
+  },
+  {
+    "index": 17,
+    "file": "3A8781AF-47B0-4E90-AA12-1D1F52245330.png",
+    "productId": "live-85nc-headphones",
+    "duplicate": false,
+    "sha256": "5ee5ffcc925f3bc29c9acb0addebde0f0e2e4a35a4bee59d0a5010abd6542f3a"
+  },
+  {
+    "index": 18,
+    "file": "3E6B76DF-F385-47CD-80B9-0C424A7B448E.png",
+    "productId": "shplus-usb-a-charger",
+    "duplicate": false,
+    "sha256": "4713c8791d649555f01ecc1ddd3a8f19bb1861193f324b772b2fe5fdd7120467"
+  },
+  {
+    "index": 19,
+    "file": "4411D227-F8D1-4C20-9DAC-A8ECEDE89BC1.png",
+    "productId": "white-wired-earphones",
+    "duplicate": false,
+    "sha256": "8bee82090efd908a94b36d115381e5a8526ce9e6eaddcb7273b8244b648e611a"
+  },
+  {
+    "index": 20,
+    "file": "44BFE94C-128F-407B-A587-D9D6CA1F8981.png",
+    "productId": "textured-phone-case-black",
+    "duplicate": false,
+    "sha256": "96bf46cd202f8e5b843be1a95e44b1f0a4074e35902633a317ebaaaf1de1ba72"
+  },
+  {
+    "index": 21,
+    "file": "49D5E948-59D0-42CA-BE89-209BEFA4E45F.png",
+    "productId": "textured-phone-case-brown",
+    "duplicate": false,
+    "sha256": "6dfa1ccfa0792d21e1f957e82fb68cc7b5ff56b34c3956a1f9841fed43cd4783"
+  },
+  {
+    "index": 22,
+    "file": "4BC91815-F846-430C-A3AB-3A5EEBBA1C82.png",
+    "productId": "polymer-powerbank-33000",
+    "duplicate": false,
+    "sha256": "8b7b923482678ffa9d6b90586637e6dea8b428af2f494da2d1e78b4a982a534f"
+  },
+  {
+    "index": 23,
+    "file": "5741ECB1-CED0-452E-8A00-0458F1D06A8E.png",
+    "productId": "17-pro-max-usbc-earphones",
+    "duplicate": false,
+    "sha256": "1e1ec42c33b1a907f11d368582417a3943bd44ae36f25fa9d38200e68f33ce64"
+  },
+  {
+    "index": 24,
+    "file": "59CB91E8-D48C-4BF7-952D-352940C55D91.png",
+    "productId": "oraimo-powernova-b31",
+    "duplicate": false,
+    "sha256": "8e67e2cddc67df8d8f828f8debe8c51b81b0cdbcd3c1ca08b74d584a483c5d96"
+  },
+  {
+    "index": 25,
+    "file": "5A0D5A20-6788-43D9-84F7-478F8DE04773.png",
+    "productId": "p9-headphones-blue",
+    "duplicate": false,
+    "sha256": "0e6a9414eaaaaa9f128bc6143f905ebc8204602f888aa3ad8d6382122cc821ae"
+  },
+  {
+    "index": 26,
+    "file": "5B01D943-4576-4E7D-BEBE-574DB0DE746B.png",
+    "productId": "shplus-lightning-cable",
+    "duplicate": false,
+    "sha256": "725fe789e3b13e88f4a27715d42927116d54c2cf3fd54e043d4d6c040c1c94ab"
+  },
+  {
+    "index": 27,
+    "file": "5B1B6B61-3D00-4435-91BD-089EB6AA526F.png",
+    "productId": "zealot-p15",
+    "duplicate": false,
+    "sha256": "67e5a7a6e7e65df874d203a9f76b1bd44f05f0ec087d4e28ae6a8c5ec1b4ac27"
+  },
+  {
+    "index": 28,
+    "file": "60844CAA-EA8E-4373-BC55-292502F6D001.png",
+    "productId": "baseus-usbc-usbc-2m",
+    "duplicate": false,
+    "sha256": "6d283e313bea9e476419d89c8a39464f0bc29e576a43918b51e6dd653b9dee2a"
+  },
+  {
+    "index": 29,
+    "file": "6B576BDF-FC3E-4AD2-AD37-CE726CEDBC56.png",
+    "productId": "hp-silver-business-notebook",
+    "duplicate": false,
+    "sha256": "5d14510539a85ebcff586191d2d2b909ddc3bb059e5077ecded11f6e051c11c9"
+  },
+  {
+    "index": 30,
+    "file": "73E97A59-C579-4D2B-ADC6-4BAE59FD75C1.png",
+    "productId": "hp-wm168-mouse",
+    "duplicate": false,
+    "sha256": "5f41aca029b2b2aacfe129fb322a2909181c0ea348fd82f21a1b3e0a06319db3"
+  },
+  {
+    "index": 31,
+    "file": "7AB85FEF-6EC6-4FCA-BC02-7DAB827CC978.png",
+    "productId": "pro-led-600-panel",
+    "duplicate": false,
+    "sha256": "f1ca4b8e566a414cdea0cf882f50aa9114b7f8696405464ed4f5eb1d06f9409d"
+  },
+  {
+    "index": 32,
+    "file": "7B5D8592-9200-4AD8-B834-F21D9ADC2923.png",
+    "productId": "feudz-120w-adapter",
+    "duplicate": false,
+    "sha256": "87494d78865ff81dba3bc2dedf865c8110d7c05f0592ab54f3157e713e532526"
+  },
+  {
+    "index": 33,
+    "file": "7CBF49B3-EBDC-439A-85D8-FAB94321FE7F.png",
+    "productId": "dell-convertible-silver",
+    "duplicate": false,
+    "sha256": "267ade69e6bae156a06f0f4cf70df736e42fe5e96dc8bef9856239ddfc1983d3"
+  },
+  {
+    "index": 34,
+    "file": "808CDCFB-237A-4EB3-B06F-2C35913BDC74.png",
+    "productId": "rgb-ring-light-18",
+    "duplicate": false,
+    "sha256": "73264536fd88879ef6e7659a8e78df8bf2f66e2ea5f6edc368e9bd1809280db9"
+  },
+  {
+    "index": 35,
+    "file": "81C62AEE-3E1F-41B2-BC23-5887B36FAE81.png",
+    "productId": "k11-wireless-earbuds",
+    "duplicate": false,
+    "sha256": "0d1dff1d083ba486f04b7ad9dd862ca2154ff29404d4d452535245e1479d2989"
+  },
+  {
+    "index": 36,
+    "file": "8A914AA6-3F6C-43CB-B8A8-462A10F2D457.png",
+    "productId": "smart-glasses-black",
+    "duplicate": false,
+    "sha256": "1458a01069485e5cd24fa0758af121bd7633519b9afbf2c890d20a56e9f25d3f"
+  },
+  {
+    "index": 37,
+    "file": "8DAFC901-A34C-4424-B449-D6EA7A0C55DC.png",
+    "productId": "dualshock-4-blue",
+    "duplicate": false,
+    "sha256": "5d7bdd60fa512797b1db5c559cf9222ae6f58dc68d60f0c03b93d93f18bf2b19"
+  },
+  {
+    "index": 38,
+    "file": "8FCAF55A-97FA-4191-AB03-4FED054D4ED2.png",
+    "productId": "phone-case-orange",
+    "duplicate": false,
+    "sha256": "7689a9ef1e74a4065f57c38d02ca7ae913366ed077b3af7caf1ce46929d2dd6f"
+  },
+  {
+    "index": 39,
+    "file": "93752EFF-DA03-4E87-AECF-B9D8EFC2C736.png",
+    "productId": "r1s-selfie-stick",
+    "duplicate": false,
+    "sha256": "0bc00d938e6017109a2131b9751129e599671e8ed681996c3e5fc1523a6dc1fe"
+  },
+  {
+    "index": 40,
+    "file": "93AFA35D-67A0-41C9-BE67-4FA6A5D37AF7.png",
+    "productId": "zealot-s97",
+    "duplicate": false,
+    "sha256": "dca0f3b06d06f8cd43a806f8725c32518b9d4a62af9b83010c7997f5c4e72e59"
+  },
+  {
+    "index": 41,
+    "file": "953A9D88-425E-4EC3-9EE2-54F3014204C8.png",
+    "productId": "dell-business-silver",
+    "duplicate": false,
+    "sha256": "d1ddf5214f471b78f0716143445eedbe9dfd82939a05df4f452855c6b40aaeb1"
+  },
+  {
+    "index": 42,
+    "file": "96030B03-9C62-4C15-A4D8-98047BCE6A4C.png",
+    "productId": "mj36-ring-light",
+    "duplicate": false,
+    "sha256": "4cf98236e1472a60c70f5ab4adca80e833dc09e052519a5569a3e0f4c4ac779c"
+  },
+  {
+    "index": 43,
+    "file": "96536C85-04E5-4EB1-A1EB-623A51A4DC70.png",
+    "productId": "rgb-ring-light-22",
+    "duplicate": false,
+    "sha256": "300958938ce8445df3a28a4d2afbb7c26c3e0c682599a36175e098f13f6873b4"
+  },
+  {
+    "index": 44,
+    "file": "98128C28-9682-4718-BAFE-E4360704102E.png",
+    "productId": "c12-tracking-selfie-stick",
+    "duplicate": false,
+    "sha256": "f6ea89c44002715bdddfbafeaf47b77e3d8144548494528ea23eca04ee531fcb"
+  },
+  {
+    "index": 45,
+    "file": "9F4035B0-D8FD-471F-88AB-B8D62A306CD1.png",
+    "productId": "jamax-maxpura-6",
+    "duplicate": false,
+    "sha256": "f05bda58e29ec01af3e6fa061b2eb0f354690173024269381d725e9496fb7ee7"
+  },
+  {
+    "index": 46,
+    "file": "A1990557-4111-4F54-AE62-8E848B68F5D6.png",
+    "productId": "phone-case-diagonal-black",
+    "duplicate": false,
+    "sha256": "5c9e7bfa08b99e0ea4e6796b79e206783c13d2d2a9169a790b0da05f1517fcd2"
+  },
+  {
+    "index": 47,
+    "file": "A8363B07-26E3-4F80-9645-79317DD68596.png",
+    "productId": "oraimo-powernova-q41",
+    "duplicate": false,
+    "sha256": "e2f0cc99ab0c5657551c929978045e5a184e4dc687d6cab73e6bac6213ced279"
+  },
+  {
+    "index": 48,
+    "file": "A934D0D1-F38D-4CCC-A242-039B8281397A.png",
+    "productId": "zealot-wireless-speaker",
+    "duplicate": false,
+    "sha256": "e859ba2f581557801c33f8372cba3ba90fe45a8773212b04e207c987252177b3"
+  },
+  {
+    "index": 49,
+    "file": "AB26F4E7-F389-4D66-AB45-E0E3A7402B8E.png",
+    "productId": "itel-budsair-pro",
+    "duplicate": false,
+    "sha256": "6edbec0a14e97db811e6a1ba1d5247e3ab1bd81e761951a9cf74f64a46466762"
+  },
+  {
+    "index": 50,
+    "file": "AC98AEEF-5C38-4323-B2AB-E9EE4237D548.png",
+    "productId": "hp-slim-silver-notebook",
+    "duplicate": false,
+    "sha256": "5c5dd2d8c9000eaa4fdc0aa1ffecb93c9be7fc295e77bc5948167864e28eca50"
+  },
+  {
+    "index": 51,
+    "file": "ACB68DFF-48AC-4F0C-915C-7A7B3BD86AF3.png",
+    "productId": "white-wireless-earbuds-anc-label",
+    "duplicate": false,
+    "sha256": "86606edd925a5f31056e1ca15e31bc5d4b7590994ab47d48acd678cc155645eb"
+  },
+  {
+    "index": 52,
+    "file": "B0B8E5C3-C812-40C5-8CBA-F8A4A7109FDF.png",
+    "productId": "textured-phone-case-grey",
+    "duplicate": false,
+    "sha256": "c4b351d1fcc450b682a361115f597c87e8f70799a19ed213947020ae2e25ecc3"
+  },
+  {
+    "index": 53,
+    "file": "B2686873-13E4-4075-9358-D13B8D705E7C.png",
+    "productId": "playstation-3-250gb",
+    "duplicate": false,
+    "sha256": "d3d3cdd01fa01f3b2f091e868f334ea03ff97298584cc741549620ece158d0b7"
+  },
+  {
+    "index": 54,
+    "file": "B2686873-13E4-4075-9358-D13B8D705E7C-1.png",
+    "productId": "playstation-3-250gb",
+    "duplicate": true,
+    "sha256": "d3d3cdd01fa01f3b2f091e868f334ea03ff97298584cc741549620ece158d0b7"
+  },
+  {
+    "index": 55,
+    "file": "B31BEA5E-23BB-4F51-8AF1-95DC989C94DF.png",
+    "productId": "jamax-white-earbuds",
+    "duplicate": false,
+    "sha256": "f32bcb72251ba3543c1dde5b59ab9ce71a0ba7141f7772fd4bb92265772e19cf"
+  },
+  {
+    "index": 56,
+    "file": "B409BA25-4589-4A06-B4CF-4F1EE823C340.png",
+    "productId": "vl160bd-phone-light",
+    "duplicate": false,
+    "sha256": "df13256a6bbfc6719bc95eeb290f6bb1dc5b4550221a68bea9a4466d8ecc45d4"
+  },
+  {
+    "index": 57,
+    "file": "B4D03432-73CE-4D16-84A8-287D27CB39E6.png",
+    "productId": "q96-tv-stick",
+    "duplicate": false,
+    "sha256": "3af931f346e5c81b85e79280333ca12be602ad72a424ffe615ffff43dd5752bd"
+  },
+  {
+    "index": 58,
+    "file": "B5A66F76-9DEE-49CB-BEDA-641415DA98F5.png",
+    "productId": "l16-selfie-stick",
+    "duplicate": false,
+    "sha256": "f3bda26696a4d656c40824e108faad44817e000df095e5447700af57f390fa66"
+  },
+  {
+    "index": 59,
+    "file": "B62E3F38-2689-4CA0-88D7-AD03A5B3C93D.png",
+    "productId": "hp-convertible-silver",
+    "duplicate": false,
+    "sha256": "2c18aebcf8f90aec41bbdade4fee1f8bce549e52d59be0a19d07284b3827560d"
+  },
+  {
+    "index": 60,
+    "file": "B80C5CF1-5C78-405A-88B0-010038C3D57B.png",
+    "productId": "playstation-4-slim-1tb",
+    "duplicate": false,
+    "sha256": "7498fd9db1ca977406cbd0d81ffaba9d10b1078021f7c3ed7527320e74b87044"
+  },
+  {
+    "index": 61,
+    "file": "B8E11405-E1D4-49FF-9F0F-00E20C8CC641.png",
+    "productId": "ay49-video-kit",
+    "duplicate": false,
+    "sha256": "cd93a2fc6eb90f818cad95482b32b71fcf97ecb9b9fd0f8644d80fdb6c6a282c"
+  },
+  {
+    "index": 62,
+    "file": "BBDBA5B9-D6BF-4AAF-9A8C-84CE73681CBD.png",
+    "productId": "earhook-wireless-earbuds",
+    "duplicate": false,
+    "sha256": "2dfae53514ec58d861d59196ce785ffda5a58a3003b70922b9460e5f932f145e"
+  },
+  {
+    "index": 63,
+    "file": "C074C68E-664D-4075-B270-B04079D2F746.png",
+    "productId": "l016-tablet-stand",
+    "duplicate": false,
+    "sha256": "47f05936daf052191b0279fdc911733dbcae40e089600f4460cc2498f2c86028"
+  },
+  {
+    "index": 64,
+    "file": "C71CEC8A-FAA3-492A-84F8-D94B23494D13.png",
+    "productId": "hp-silver-classic-notebook",
+    "duplicate": false,
+    "sha256": "8ff86d0cf8941e826c0926d6bd71c40856bb95ff223b19458be0ab2263447dae"
+  },
+  {
+    "index": 65,
+    "file": "C95E6001-5CA5-4181-A065-5230D1565F59.png",
+    "productId": "bose-black-headphones",
+    "duplicate": false,
+    "sha256": "a91e356e78d79ecd838ad089bd5049aad8154e8a6445a0e1a954bece9a488467"
+  },
+  {
+    "index": 66,
+    "file": "D2E54705-FA5B-4FF1-AA43-E077A4419F97.png",
+    "productId": "earhook-wireless-earbuds",
+    "duplicate": false,
+    "sha256": "e06b45efccdc6bb1cb767746e13233f23f391a823310a1408ff9d072f32e6e42"
+  },
+  {
+    "index": 67,
+    "file": "D48ED2C9-9725-4996-9480-D1A3EE9587B6.png",
+    "productId": "dell-compact-silver",
+    "duplicate": false,
+    "sha256": "171c42cbeff23ad4090461d2438916e391addaa119ec3687f0be75e8918209a1"
+  },
+  {
+    "index": 68,
+    "file": "D5074D8D-CFDE-40D7-9007-D767C83BEC4A.png",
+    "productId": "jc18h-selfie-stick",
+    "duplicate": false,
+    "sha256": "d34734fa534c2c21b84c132e75d51cb94ceb6d309444730029d8b891fa7cd807"
+  },
+  {
+    "index": 69,
+    "file": "D8519F64-6194-4CA1-B5C2-209A264B86FB.png",
+    "productId": "braided-aux-cable",
+    "duplicate": false,
+    "sha256": "593582643688bad8d65d7a7727d4dbf217739212ef1aac4fdda5b7f4a76a23c6"
+  },
+  {
+    "index": 70,
+    "file": "E66748D5-8428-4AF7-AAB9-55F3C1842586.png",
+    "productId": "aurora-t3-headphones",
+    "duplicate": false,
+    "sha256": "78a42267c1f89638968be790e2d529581149625f5584682409c89ad2727b8535"
+  },
+  {
+    "index": 71,
+    "file": "E7EEF55B-824D-4395-8733-6FF113FAC433.png",
+    "productId": "hp-compact-black",
+    "duplicate": false,
+    "sha256": "038421c02241a0d8cd229c74188d5a488a81905c76c3000d278d943791f106f5"
+  },
+  {
+    "index": 72,
+    "file": "E84D61BE-7B25-4F81-AF7C-D6BC75F6A667.png",
+    "productId": "mg-s20-led-earbuds",
+    "duplicate": false,
+    "sha256": "8dbe526fa1829d8e215548fcbcbd14dbd66e5e612bfe7c9dbd0c014a29df47cc"
+  },
+  {
+    "index": 73,
+    "file": "EA45B1E4-B442-4576-B13B-7E8CE67A8451.png",
+    "productId": "dell-silver-notebook",
+    "duplicate": false,
+    "sha256": "b9f09cd3290f77376b01b5a89b126db121b251498dc013b82163e37c41ac1448"
+  },
+  {
+    "index": 74,
+    "file": "EC620174-DE59-4C6E-B194-020564125C1A.png",
+    "productId": "mj38-rgb-ring-light",
+    "duplicate": false,
+    "sha256": "6e279e005231f020531ae4e2ecad65a6d5a93bd5f07acca33606736deb0e3731"
+  },
+  {
+    "index": 75,
+    "file": "F0455D6C-783A-4B31-A50A-62D1ABD5CFA2.png",
+    "productId": "polymer-powerbank-55000",
+    "duplicate": false,
+    "sha256": "785cdbb7b97f0fd74b92874809e4ef87633d059229ffb31e78e944fdbf32b29e"
+  },
+  {
+    "index": 76,
+    "file": "F0455D6C-783A-4B31-A50A-62D1ABD5CFA2-1.png",
+    "productId": "polymer-powerbank-55000",
+    "duplicate": true,
+    "sha256": "785cdbb7b97f0fd74b92874809e4ef87633d059229ffb31e78e944fdbf32b29e"
+  },
+  {
+    "index": 77,
+    "file": "F06E0D27-6A9E-4525-8A1F-B4A08651B68B.png",
+    "productId": "shplus-sh-e30-earphones",
+    "duplicate": false,
+    "sha256": "960d1bacfec63c48fa877ad4e8c06a625d99475d9368906328554d9a0aa5504a"
+  },
+  {
+    "index": 78,
+    "file": "F47F8CC0-4F8C-4083-8941-E8A22DF9F7AF.png",
+    "productId": "aimb-g2-pro-glasses",
+    "duplicate": false,
+    "sha256": "a137fc01d1c19f39b8f1dad0a0dc5c99a7be3b48466a2392bba076c838bb6a65"
+  },
+  {
+    "index": 79,
+    "file": "F54E7EAC-2210-40D8-8280-3497562F0EC2.png",
+    "productId": "dell-business-grey",
+    "duplicate": false,
+    "sha256": "b1b6b4cbefbd64545b0b4776dc04f0508085de839cd4087167e7b7051f7686ef"
+  },
+  {
+    "index": 80,
+    "file": "F68C084D-2D5F-437C-9AB2-631B29B9E19B.png",
+    "productId": "zealot-s67",
+    "duplicate": false,
+    "sha256": "b43d100c0101522aa20763d83748ddb52ef91086b23f6484cca4be537bc16bba"
+  },
+  {
+    "index": 81,
+    "file": "F68F67DF-EADE-4C89-9F52-09064F0B7DC5.png",
+    "productId": "hp-v3000-mouse",
+    "duplicate": false,
+    "sha256": "06277b90c4014c580d193304272d7e4fc721e800d96ea3e439b32fb5d66d1e46"
+  }
+]
