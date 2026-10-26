@@ -1,13 +1,15 @@
-# Product editor
+# Product manager
 
-Run `npm.cmd run dev` and visit http://localhost:5173/admin.
+Run npm.cmd run dev and visit http://127.0.0.1:5173/mgeadmin, or use /mgeadmin on the deployed storefront. Enter the owner's password. There is no email login or customer registration. The old /admin route is retired.
 
-Search for an existing product, select it, change its details, and click Save changes. Names, brands, categories, prices, placeholder-price labels, stock, badges, descriptions, specifications, and product notes are editable. Existing IDs, image galleries, and source references are preserved.
+Select a product to edit its details, price, stock, badge, notes, and specifications. Save changes publishes directly to Supabase. Reload refreshes the catalogue; stale revisions are rejected to prevent overwriting another editor's save.
 
-Choose New product to add an item. Enter its name, brand, category, description, and price; stock and specifications are optional. Upload one to four PNG, JPEG, or WebP photos, up to 3 MB each. The first photo becomes the main image. Create product saves the photos to `client/public/products/` and adds the product to the catalogue with a unique ID. New products can then be edited like existing products. Retrying the same creation request cannot silently create a duplicate. There are no delete actions or customer accounts.
+Choose New product to add an item with one to four PNG, JPEG, or WebP photos, up to 3 MB each. The first photo is the main image. Existing products can have their entire gallery replaced by choosing new photos; leaving the upload field empty preserves the current gallery. IDs and source references are preserved. There is no delete-product action.
 
-Saves update `client/src/data.ts` on disk; they are not browser-only storage. The previous catalogue is backed up to `client/src/data.ts.admin-backup` before each save. The storefront receives the changes through Vite. Rebuild and publish to update a hosted storefront.
+Product saves do not need a rebuild or GitHub push. Customers fetch the current catalogue on page entry, tab focus, and every minute while visible. Their saved cart is reconciled with live stock only after loading. Connection failures show an explicit retry state instead of old bundled prices.
 
-The write endpoint exists only in the Vite development server, restricted to loopback requests with matching origin and an explicit request header. It is a local editing tool, not a hosted authentication system. The production static build does not include a write API; online administration requires an authenticated backend. Do not expose the development server through a public tunnel.
+Lock admin revokes the session immediately. Sessions expire after eight hours and are held in browser session storage. Passwords are hashed on the backend and never shipped in JavaScript. Five failed attempts per client or thirty overall within fifteen minutes trigger a temporary lockout.
 
-Validation: `node scripts/check-admin.mjs` uses a temporary catalogue to check persistence, validation, backups, access restrictions, and concurrent-save protection without changing the real product data.
+Existing optimized photos remain with the frontend; new/replacement photos go to Supabase Storage. The backend and bucket both enforce 3 MB. Old replaced images are retained so open customer pages do not lose their photos.
+
+See [Supabase setup](SUPABASE.md) for security, deployment, password rotation, and checks. The historical server/catalogue-admin.mjs is no longer registered in Vite and is not used by the storefront.

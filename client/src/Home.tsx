@@ -4,7 +4,7 @@ import { ArrowRight, ChevronLeft, ChevronRight, CreditCard, Headphones, Laptop, 
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { OptimizedImage } from './components/OptimizedImage'
 
-import { products } from './data'
+import { useProducts } from './catalogue-state'
 import { Button } from './components/ui/button'
 
 
@@ -18,16 +18,16 @@ const categoryCards = [
   { name: 'Laptops', note: 'Work without limits', icon: Laptop },
 ]
 
-const heroLaptop = products.find(p => p.id === 'hp-elitebook-silver')!
-const heroGlasses = products.find(p => p.id === 'aimb-g2-pro-glasses')!
-const heroAudio = products.find(p => p.id === 'bose-quietcomfort-ultra')!
 const heroSlides = [
   { tone: 'phone', label: 'Phone', kicker: 'A considered collection. An everyday upgrade.', title: <>Good tech.<br /><span>Great possibilities.</span></>, description: 'The accessories you reach for. The details that make a difference. Find your everyday upgrade at MGE.', image: '/mge-phone-podium.png', alt: 'Two graphite smartphones on a silver display stand', href: '/shop?category=Charging', category: 'Accessories', cta: 'Explore accessories', note: 'Phone concept shown' },
   { tone: 'laptop', label: 'Laptop', kicker: 'For the ideas that deserve to go further.', title: <>Big ideas.<br /><span>Beautifully in motion.</span></>, description: 'For your next project, your next workspace, your next chapter. Find a laptop that fits the way you work.', image: '/mge-macbook-podium.png', alt: 'MacBook Pro mockup on a silver display stand', href: '/shop?category=Laptops', category: 'Laptops', cta: 'Explore laptops', note: 'MacBook mockup shown' },
-  { tone: 'glasses', label: 'Smart glasses', kicker: 'A fresh perspective on the everyday.', title: <>See the world.<br /><span>A little differently.</span></>, description: 'Discover smart glasses and explore a new way to capture moments, listen, and stay connected.', image: '/mge-glasses-hero.png', alt: 'Illustrative black smart glasses', href: '/product/' + heroGlasses.id, category: 'Wearables', cta: 'Explore smart glasses', note: 'Smart-glasses concept shown' },
+  { tone: 'glasses', label: 'Smart glasses', kicker: 'A fresh perspective on the everyday.', title: <>See the world.<br /><span>A little differently.</span></>, description: 'Discover smart glasses and explore a new way to capture moments, listen, and stay connected.', image: '/mge-glasses-hero.png', alt: 'Illustrative black smart glasses', href: '/shop?category=Wearables', category: 'Wearables', cta: 'Explore smart glasses', note: 'Smart-glasses concept shown' },
 ]
 
 export default function Home() {
+  const products = useProducts()
+  const heroLaptop = products.find(p => p.category === 'Laptops')
+  const heroAudio = products.find(p => p.category === 'Audio')
   const reduced = useReducedMotion()
   const [activeSlide, setActiveSlide] = useState(0)
   const [rotationPaused, setRotationPaused] = useState(false)
@@ -81,7 +81,7 @@ export default function Home() {
 
     <section className="featured-section"><div className="container home-section"><div className="section-title-line"><div><p>THE MGE EDIT</p><h2>Good tech. Great choices.</h2><span>Thoughtfully selected for work, play, and everything in between.</span></div><Link to="/shop">Explore all products <ArrowRight size={16} /></Link></div><div className="product-grid featured-grid">{products.slice(0,4).map((p) => <ProductCard key={p.id} product={p} />)}</div><p className="sample-note">MGE collection · Placeholder prices are labelled. Confirm availability before ordering.</p></div></section>
 
-    <section className="container promo-grid"><Link to="/shop?category=Laptops" className="promo promo-work"><div><p>WORK, BEAUTIFULLY.</p><h2>Big ideas.<br/>Meet your match.</h2><span>Find your laptop <ArrowRight size={17}/></span></div><OptimizedImage sizes="(max-width: 700px) 70vw, 400px" src={heroLaptop.image} alt={heroLaptop.name} loading="lazy"/></Link><Link to="/shop?category=Audio" className="promo promo-audio"><div><p>YOUR MOMENT OF FOCUS</p><h2>Less noise.<br/>More you.</h2><span>Explore audio <ArrowRight size={17}/></span></div><OptimizedImage sizes="(max-width: 700px) 70vw, 400px" src={heroAudio.image} alt={heroAudio.name} loading="lazy"/></Link></section>
+    <section className="container promo-grid"><Link to="/shop?category=Laptops" className="promo promo-work"><div><p>WORK, BEAUTIFULLY.</p><h2>Big ideas.<br/>Meet your match.</h2><span>Find your laptop <ArrowRight size={17}/></span></div><OptimizedImage sizes="(max-width: 700px) 70vw, 400px" src={heroLaptop?.image || '/mge-macbook-podium.png'} alt={heroLaptop?.name || 'Laptops'} loading="lazy"/></Link><Link to="/shop?category=Audio" className="promo promo-audio"><div><p>YOUR MOMENT OF FOCUS</p><h2>Less noise.<br/>More you.</h2><span>Explore audio <ArrowRight size={17}/></span></div><OptimizedImage sizes="(max-width: 700px) 70vw, 400px" src={heroAudio?.image || '/mge-phone-podium.png'} alt={heroAudio?.name || 'Audio'} loading="lazy"/></Link></section>
 
     <section className="service-row container">{[[ShieldCheck, 'Product details', 'Explore specifications'], [CreditCard, 'Secure payments', 'Flexible ways to pay'], [Truck, 'Nationwide delivery', 'Reliable delivery options'], [RotateCcw, 'Easy support', 'Clear returns process'], [Headphones, 'Customer care', 'Real help when needed']].map(([Icon, title, copy]) => { const I = Icon as typeof ShieldCheck; return <div key={String(title)}><I size={21} /><span><b>{String(title)}</b><small>{String(copy)}</small></span></div> })}</section>
   </>

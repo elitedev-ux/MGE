@@ -6,7 +6,9 @@ const Admin = lazy(() => import('./Admin'))
 const Home = lazy(() => import('./Home'))
 const SupportPages = lazy(() => import('./SupportPages'))
 import { ProductCard } from './components/ProductCard'
-import { products, categories, money, purchaseLimit, type Product } from './data'
+import { categories, money, purchaseLimit, type Product } from './data'
+import { useProducts } from './catalogue-state'
+import { CatalogueBoundary, useCatalogueRefresh } from './CatalogueBoundary'
 import { useShop } from './store'
 import { whatsappCheckoutUrl } from './checkout'
 import { Button } from './components/ui/button'
@@ -29,6 +31,7 @@ function Header() {
 }
 
 function Shop() {
+  const products = useProducts()
   const [params, setParams] = useSearchParams()
   const data = products
   const category = params.get('category') || ''; const query = params.get('q') || ''; const sort = params.get('sort') || 'featured'; const max = Number(params.get('max') || 3000000)
@@ -38,6 +41,7 @@ function Shop() {
 }
 
 function ProductPage() {
+  const products = useProducts()
   const { slug } = useParams()
   const p = products.find(p => p.id === slug)
   const { add, save, wishlist } = useShop()
@@ -72,11 +76,12 @@ function ProductPage() {
 }
 
 function Cart() {
+  const products = useProducts()
   const { cart, quantity } = useShop(); const entries = products.filter(p => cart[p.id]); const total = entries.reduce((s, p) => s + p.price * cart[p.id], 0)
   return <section className="container page"><p className="purple-kicker">YOUR MGE BAG</p><h1>Your shopping bag.</h1>{!entries.length ? <div className="empty"><ShoppingBag size={40} /><h2>Your bag is ready for something great.</h2><p>Discover technology made for your everyday.</p><Button asChild><Link to="/shop">Explore products <ArrowRight size={16} /></Link></Button></div> : <div className="cart-layout"><div>{entries.map(p => <div className="cart-row" key={p.id}><OptimizedImage src={p.image} alt={p.name} sizes="90px" /><div><Link to={`/product/${p.id}`}><h3>{p.name}</h3></Link><p>{money(p.price)}</p><button className="remove" onClick={() => quantity(p.id, 0)}>Remove</button></div><div className="quantity"><button aria-label={`Decrease ${p.name} quantity`} onClick={() => quantity(p.id, cart[p.id] - 1)}><Minus size={14} /></button>{cart[p.id]}<button aria-label={`Increase ${p.name} quantity`} onClick={() => quantity(p.id, cart[p.id] + 1)} disabled={cart[p.id] >= purchaseLimit(p)}><Plus size={14} /></button></div></div>)}</div><div className="order-summary"><h2>Order summary</h2><div><span>Subtotal</span><strong>{money(total)}</strong></div><div><span>Delivery</span><span>Confirmed on WhatsApp</span></div><p>{entries.some(p => p.priceIsPlaceholder) && <>Your bag includes placeholder prices. </>}Confirm final prices, availability, and delivery with MGE on WhatsApp. Your cart items will be filled in—just review and send.</p><Button asChild className="full"><a href={whatsappCheckoutUrl(entries.map(p => ({ name: p.name, quantity: cart[p.id] })))} target="_blank" rel="noopener noreferrer">Checkout on WhatsApp <ArrowRight size={16} /></a></Button></div></div>}</section>
 }
 
-function Wishlist() { const { wishlist } = useShop(); return <section className="container page"><p className="purple-kicker">SAVED FOR LATER</p><h1>Your wishlist.</h1><div className="product-grid">{products.filter(p => wishlist.includes(p.id)).map(p => <ProductCard key={p.id} product={p} />)}</div>{!wishlist.length && <div className="empty"><Heart size={38} /><h2>Save something you love.</h2><p>Tap the heart on a product to keep it here.</p><Button asChild><Link to="/shop">Discover products</Link></Button></div>}</section> }
+function Wishlist() { const products = useProducts(); const { wishlist } = useShop(); return <section className="container page"><p className="purple-kicker">SAVED FOR LATER</p><h1>Your wishlist.</h1><div className="product-grid">{products.filter(p => wishlist.includes(p.id)).map(p => <ProductCard key={p.id} product={p} />)}</div>{!wishlist.length && <div className="empty"><Heart size={38} /><h2>Save something you love.</h2><p>Tap the heart on a product to keep it here.</p><Button asChild><Link to="/shop">Discover products</Link></Button></div>}</section> }
 function Info() { return <section className="container page info-page"><p className="purple-kicker">MGE</p><h1>Technology for every day.</h1><p>Miztashogofunmi Global Enterprise (MGE) brings together laptops, accessories, and everyday technology. Explore the collection and speak with us on WhatsApp to confirm the right product for you.</p><Button asChild><Link to="/shop">Explore products <ArrowRight size={16} /></Link></Button></section> }
 function NotFound() { return <section className="container page empty"><p className="purple-kicker">404</p><h1>That page is out of range.</h1><p>Let’s get you back to the good stuff.</p><Button asChild><Link to="/">Back to MGE</Link></Button></section> }
 
@@ -86,10 +91,11 @@ function Footer() {
 
 export default function App() {
   const location = useLocation()
+  useCatalogueRefresh(location.pathname + location.search)
   useEffect(() => {
-    const titles:Record<string,string> = {'/':'Premium technology for your everyday','/contact':'Contact & support','/delivery':'Delivery information','/returns':'Returns & warranty','/privacy':'Privacy','/terms':'Terms of purchase','/about':'Our story','/admin':'Product manager','/shop':'Shop the collection','/cart':'Your shopping bag','/wishlist':'Your wishlist'}
+    const titles:Record<string,string> = {'/':'Premium technology for your everyday','/contact':'Contact & support','/delivery':'Delivery information','/returns':'Returns & warranty','/privacy':'Privacy','/terms':'Terms of purchase','/about':'Our story','/mgeadmin':'Product manager','/shop':'Shop the collection','/cart':'Your shopping bag','/wishlist':'Your wishlist'}
     document.title = (titles[location.pathname] || 'MGE collection') + ' | Miztashogofunmi Global Enterprise'
   }, [location.pathname])
-  if (location.pathname === '/admin' || location.pathname === '/admin/') return <Suspense fallback={<main className="container page" role="status">Loading product manager…</main>}><Admin /></Suspense>
-  return <><Header /><main><Suspense fallback={<div className="route-loading" role="status">Loading collection…</div>}><Routes><Route path="/" element={<Home />} /><Route path="/shop" element={<Shop />} /><Route path="/product/:slug" element={<ProductPage />} /><Route path="/cart" element={<Cart />} /><Route path="/wishlist" element={<Wishlist />} /><Route path="/about" element={<Info />} />{['contact', 'delivery', 'returns', 'privacy', 'terms'].map(path => <Route key={path} path={`/${path}`} element={<SupportPages />} />)}<Route path="*" element={<NotFound />} /></Routes></Suspense></main><Footer /></>
+  if (location.pathname === '/mgeadmin' || location.pathname === '/mgeadmin/') return <Suspense fallback={<main className="container page" role="status">Loading product manager…</main>}><Admin /></Suspense>
+  return <><Header /><main><Suspense fallback={<div className="route-loading" role="status">Loading collection…</div>}><Routes><Route path="/" element={<CatalogueBoundary><Home /></CatalogueBoundary>} /><Route path="/shop" element={<CatalogueBoundary><Shop /></CatalogueBoundary>} /><Route path="/product/:slug" element={<CatalogueBoundary><ProductPage /></CatalogueBoundary>} /><Route path="/cart" element={<CatalogueBoundary><Cart /></CatalogueBoundary>} /><Route path="/wishlist" element={<CatalogueBoundary><Wishlist /></CatalogueBoundary>} /><Route path="/about" element={<Info />} />{['contact', 'delivery', 'returns', 'privacy', 'terms'].map(path => <Route key={path} path={`/${path}`} element={<SupportPages />} />)}<Route path="*" element={<NotFound />} /></Routes></Suspense></main><Footer /></>
 }

@@ -1,0 +1,5 @@
+project_id = "mge-commerce"
+
+[functions.mge-admin]
+# The function verifies its own password-issued opaque sessions on every request.
+verify_jwt = false

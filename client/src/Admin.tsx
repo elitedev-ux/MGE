@@ -4,19 +4,15 @@ import { ArrowLeft, Search, Save, Package, X, Plus } from 'lucide-react'
 import { categories, money, type Product } from './data'
 import { Button } from './components/ui/button'
 import './admin.css'
+import { AdminAccess, lockAdmin } from './AdminAccess'
+import { fetchCatalogue, publishCatalogue, saveProduct } from './catalogue-api'
 import { OptimizedImage } from './components/OptimizedImage'
 
 type Draft = { name:string; brand:string; category:string; price:string; original:string; stock:string; description:string; badge:string; detailsNote:string; priceIsPlaceholder:boolean; specs:[string,string][] }
 const draftOf = (p:Product):Draft => ({name:p.name,brand:p.brand,category:p.category,price:String(p.price),original:p.original == null ? '' : String(p.original),stock:p.stock === null ? '' : String(p.stock),description:p.description,badge:p.badge || '',detailsNote:p.detailsNote,priceIsPlaceholder:p.priceIsPlaceholder,specs:Object.entries(p.specs)})
-async function request(method='GET', body?:unknown) {
-  const response = await fetch('/api/admin/products', { method, headers:{'Content-Type':'application/json','X-MGE-Admin':'catalogue'}, body:body ? JSON.stringify(body) : undefined })
-  if (!response.headers.get('content-type')?.includes('application/json')) throw new Error('Open this editor on the local development server to manage products.')
-  const result = await response.json()
-  if (!response.ok) throw new Error(result.error || 'Unable to reach the catalogue.')
-  return result
-}
+export default function Admin() { return <AdminAccess><ProductManager /></AdminAccess> }
 
-export default function Admin() {
+function ProductManager() {
   const [products,setProducts] = useState<Product[]>([])
   const [revisions,setRevisions] = useState<Record<string,string>>({})
   const [selected,setSelected] = useState<Product | null>(null)
@@ -30,11 +26,12 @@ export default function Admin() {
   const [saving,setSaving] = useState(false)
   const [error,setError] = useState('')
   const [notice,setNotice] = useState('')
-  const dirty = !!(draft && selected && (creating || JSON.stringify(draft) !== JSON.stringify(draftOf(selected))))
+  const dirty = !!(draft && selected && (creating || photos.length > 0 || JSON.stringify(draft) !== JSON.stringify(draftOf(selected))))
   async function load() {
     setLoading(true); setError('')
     try {
-      const result = await request()
+      const result = await fetchCatalogue()
+      publishCatalogue(result.products)
       setProducts(result.products); setRevisions(result.revisions)
       setSelected(null); setDraft(null); setCreating(false); setPhotos([])
     } catch(e) { setError((e as Error).message) }
@@ -80,7 +77,7 @@ export default function Admin() {
     setSaving(true);setError('');setNotice('')
     try {
       const changes = {...draft,price:Number(draft.price),original:draft.original === '' ? null : Number(draft.original),stock:draft.stock === '' ? null : Number(draft.stock),specs}
-      const result = await request(creating ? 'POST' : 'PATCH', creating ? {creationKey:selected.id,images:photos,changes} : {id:selected.id,revision:revisions[selected.id],changes})
+      const result = await saveProduct(creating ? 'create' : 'update', creating ? {creationKey:selected.id,images:photos,changes} : {id:selected.id,revision:revisions[selected.id],images:photos,changes})
       setProducts(items => creating ? [...items,result.product] : items.map(p => p.id === selected.id ? result.product : p))
       setSelected(result.product);setDraft(draftOf(result.product))
       setRevisions(r => ({...r,[result.product.id]:result.revision}))
@@ -93,11 +90,11 @@ export default function Admin() {
   return <div className="admin-shell">
     <header className="admin-header"><Link to="/" onClick={e => {if (!discard()) e.preventDefault()}} aria-label="Back to storefront"><OptimizedImage src="/mge-brand-logo.png" alt="MGE" sizes="110px" /></Link><span>Catalogue manager</span><Link to="/" onClick={e => {if (!discard()) e.preventDefault()}}><ArrowLeft size={16}/> View store</Link></header>
     <main className="admin-main">
-      <div className="admin-heading"><div><p className="admin-eyebrow">MGE / ADMIN</p><h1>Your products, refined.</h1><p>Add to your collection and keep every detail up to date.</p></div><div className="admin-heading-actions"><Button onClick={newProduct} disabled={loading || !products.length || saving || readingPhotos}><Plus size={16}/> New product</Button></div></div>
-      <p className="admin-explainer">Saves update this project's catalogue. Rebuild and publish the site to share changes with online customers.</p>
+      <div className="admin-heading"><div><p className="admin-eyebrow">MGE / ADMIN</p><h1>Your products, refined.</h1><p>Add to your collection and keep every detail up to date.</p></div><div className="admin-heading-actions"><Button variant="outline" disabled={saving || readingPhotos} onClick={() => {if(discard())void lockAdmin().catch(e=>setError(e.message))}}>Lock admin</Button><Button variant="outline" disabled={saving || readingPhotos} onClick={() => {if(discard())void load()}}>Reload</Button><Button onClick={newProduct} disabled={loading || saving || readingPhotos}><Plus size={16}/> New product</Button></div></div>
+      <p className="admin-explainer">Saved changes are published to your online collection. Photos can be up to 3 MB each.</p>
       {error && <div className="admin-alert" role="alert">{error}</div>}
       {notice && <div className="admin-success" role="status">{notice}</div>}
-      {loading ? <p role="status">Loading catalogue…</p> : !products.length ? <Button onClick={() => void load()}>Retry connection</Button> : <div className="admin-layout">
+      {loading ? <p role="status">Loading catalogue…</p> : <div className="admin-layout">
         <aside className="admin-catalogue">
           <div className="admin-list-tools"><h2>Collection <span>{products.length}</span></h2><label className="admin-search"><Search size={17}/><input aria-label="Search products" placeholder="Search name or brand" value={search} onChange={e => setSearch(e.target.value)}/></label><select aria-label="Filter category" value={category} onChange={e => setCategory(e.target.value)}><option value="">All categories</option>{categories.map(c => <option key={c}>{c}</option>)}</select><small>{filtered.length} products</small></div>
           <div className="admin-product-list">{filtered.map(p => <button key={p.id} className={selected?.id === p.id ? 'selected' : ''} onClick={() => select(p)} disabled={saving || readingPhotos} aria-pressed={selected?.id === p.id}><OptimizedImage src={p.image} alt="" sizes="48px" loading="lazy"/><span><strong>{p.name}</strong><small>{p.category} · {money(p.price)}</small></span></button>)}{!filtered.length && <p className="admin-no-results">No matching products. Try a different search.</p>}</div>
@@ -106,7 +103,7 @@ export default function Admin() {
         <form className="admin-editor" onSubmit={save}>
           <div className="admin-editor-heading"><div><p className="admin-eyebrow">{creating ? 'NEW PRODUCT' : 'EDIT PRODUCT'}</p><h2>{creating ? 'Add something new.' : selected.name}</h2>{!creating && <small>{selected.id}</small>}</div>{!creating && <a href={'/product/'+selected.id} target="_blank" rel="noreferrer">Preview ↗</a>}</div>
           <fieldset disabled={saving || readingPhotos}>
-          {creating ? <div className="admin-upload"><label>Product photos<input type="file" accept="image/png,image/jpeg,image/webp" multiple onChange={e => {void addPhotos(e.target.files);e.target.value=''}}/><small>Up to 4 photos, 3 MB each. The first photo is the main product image.</small></label><div className="admin-photos">{photos.map((src,i) => <div key={i}><img src={src} alt={'New product photo '+(i+1)}/><button type="button" aria-label={'Remove photo '+(i+1)} onClick={() => setPhotos(p => p.filter((_,j) => j !== i))}><X size={14}/></button></div>)}</div>{readingPhotos && <p role="status">Reading photos…</p>}</div> : <div className="admin-photos">{selected.images.map(src => <OptimizedImage key={src} src={src} alt={selected.name} sizes="110px"/>)}</div>}
+          <div className="admin-upload"><label>{creating ? 'Product photos' : 'Replace product photos (optional)'}<input type="file" accept="image/png,image/jpeg,image/webp" multiple onChange={e => {void addPhotos(e.target.files);e.target.value=''}}/><small>Up to 4 photos, 3 MB each. The first photo is the main product image.</small></label><div className="admin-photos">{photos.map((src,i) => <div key={i}><img src={src} alt={'New product photo '+(i+1)}/><button type="button" aria-label={'Remove photo '+(i+1)} onClick={() => setPhotos(p => p.filter((_,j) => j !== i))}><X size={14}/></button></div>)}</div>{readingPhotos && <p role="status">Reading photos…</p>}</div>{!creating && !photos.length && <div className="admin-photos">{selected.images.map(src => <OptimizedImage key={src} src={src} alt={selected.name} sizes="110px"/>)}</div>}
           <h3>Product details</h3>
           <label>Product name<input required maxLength={300} value={draft.name} onChange={e => field('name',e.target.value)}/></label>
           <div className="admin-fields"><label>Brand<input required maxLength={300} value={draft.brand} onChange={e => field('brand',e.target.value)}/></label><label>Category<select value={draft.category} onChange={e => field('category',e.target.value)}>{categories.map(c => <option key={c}>{c}</option>)}</select></label></div>
@@ -120,7 +117,7 @@ export default function Admin() {
           <Button type="button" variant="outline" onClick={() => field('specs',[...draft.specs,['','']])}><Plus size={15}/> Add specification</Button>
           <label className="admin-note">Product notes<textarea rows={3} maxLength={5000} value={draft.detailsNote} onChange={e => field('detailsNote',e.target.value)}/></label>
           </fieldset>
-          <div className="admin-savebar"><span>{dirty ? 'Unsaved changes' : 'Up to date'}</span><Button type="button" variant="outline" disabled={!dirty || saving || readingPhotos} onClick={() => {if(discard()){if(creating){setCreating(false);setSelected(null);setDraft(null);setPhotos([])}else setDraft(draftOf(selected));setError('')}}}>Discard</Button><Button disabled={!dirty || saving || readingPhotos} type="submit"><Save size={16}/>{saving ? 'Saving…' : creating ? 'Create product' : 'Save changes'}</Button></div>
+          <div className="admin-savebar"><span>{dirty ? 'Unsaved changes' : 'Up to date'}</span><Button type="button" variant="outline" disabled={!dirty || saving || readingPhotos} onClick={() => {if(discard()){if(creating){setCreating(false);setSelected(null);setDraft(null);setPhotos([])}else {setDraft(draftOf(selected));setPhotos([])};setError('')}}}>Discard</Button><Button disabled={!dirty || saving || readingPhotos} type="submit"><Save size={16}/>{saving ? 'Saving…' : creating ? 'Create product' : 'Save changes'}</Button></div>
         </form>}
       </div>}
     </main>

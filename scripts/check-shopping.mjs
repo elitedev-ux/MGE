@@ -10,12 +10,17 @@ const dataSource = await fs.readFile(new URL('../client/src/data.ts',import.meta
 const dataJS = ts.transpileModule(dataSource,{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText
 const dataURL = `data:text/javascript;base64,${Buffer.from(dataJS).toString('base64')}`
 const storeSource = await fs.readFile(new URL('../client/src/store.ts',import.meta.url),'utf8')
-const storeJS = ts.transpileModule(storeSource,{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace("'./data'",JSON.stringify(dataURL))
+const storeJS = ts.transpileModule(storeSource,{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText.replace("'./data'",JSON.stringify(dataURL)).replace("'./catalogue-state'","'./.shopping-catalogue-check.mjs'")
 const temp = new URL('../client/.shopping-check.mjs',import.meta.url)
+const catalogueTemp = new URL('../client/.shopping-catalogue-check.mjs',import.meta.url)
 try {
+  const catalogueSource=await fs.readFile(new URL('../client/src/catalogue-state.ts',import.meta.url),'utf8')
+  await fs.writeFile(catalogueTemp,ts.transpileModule(catalogueSource,{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText)
+  const {setCatalogue,useCatalogue}=await import(catalogueTemp.href)
   await fs.writeFile(temp,storeJS)
   const {useShop}=await import(temp.href)
   const {products,purchaseLimit}=await import(dataURL)
+  setCatalogue(products)
   const p=products[0]
   const initialStock=p.stock
   assert.equal(initialStock,null,'new catalogue stock is unknown, not fabricated')
@@ -48,5 +53,16 @@ try {
   assert.deepEqual(useShop.getState().cart,{[p.id]:2},'retired IDs removed during migration')
   assert.deepEqual(useShop.getState().wishlist,[p.id],'valid saved products survive migration')
   assert.ok(memory.has('mge-shopping-v1'),'changes persist locally')
+  const cloud={...p,id:'product-cloud-only',stock:4}
+  useCatalogue.setState({products:[],ready:false})
+  memory.set('mge-shopping-v1',JSON.stringify({state:{cart:{[cloud.id]:3},wishlist:[cloud.id]},version:2}))
+  await useShop.persist.rehydrate()
+  assert.equal(useShop.getState().cart[cloud.id],3,'Cloud product survives hydration before network response')
+  setCatalogue([...products,cloud])
+  assert.equal(useShop.getState().cart[cloud.id],3)
+  setCatalogue([...products,{...cloud,stock:1}])
+  assert.equal(useShop.getState().cart[cloud.id],1,'Live stock changes reconcile saved cart')
+  setCatalogue(products)
+  assert.equal(useShop.getState().cart[cloud.id],undefined,'Removed cloud products leave cart after refresh')
   console.log('Shopping checks passed: known/unknown stock limits, unavailable items, quantities, wishlist, persistence, and retired-product migration.')
-} finally { await fs.unlink(temp).catch(()=>{}) }
+} finally { await fs.unlink(temp).catch(()=>{});await fs.unlink(catalogueTemp).catch(()=>{}) }
