@@ -25,7 +25,7 @@ try{
   assert.ok([401,403,404].includes(deniedRpc.status),'Public key cannot call private session RPC')
   const deniedUpload=await fetch(base+'/storage/v1/object/product-images/unauthorized.png',{method:'POST',headers:{apikey:key,'Content-Type':'image/png'},body:new Uint8Array([137,80,78,71,13,10,26,10])})
   assert.ok(!deniedUpload.ok,'Public key cannot upload photos')
-  const changes={name:'Backend verification product',brand:'MGE QA',category:'Accessories',price:1000,original:null,stock:2,description:'Temporary automated verification fixture.',badge:'',detailsNote:'',priceIsPlaceholder:true,specs:{Test:'Verification'}}
+  const changes={name:'Backend verification product',brand:'MGE QA',category:'Smartphones',price:1000,original:null,stock:2,description:'Temporary automated verification fixture.',badge:'',detailsNote:'',priceIsPlaceholder:true,specs:{Test:'Verification'}}
   const image='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII='
   const creationKey=crypto.randomUUID()
   const created=await admin('create',{creationKey,changes,images:[image]})
@@ -43,6 +43,11 @@ try{
   assert.equal((await admin('update',{id:created.row.id,revision:String(updated.row.revision),changes:{...changes,price:-1}})).status,400)
   const reread=await fetch(base+'/rest/v1/products?id=eq.'+created.row.id,{headers:{apikey:key}}).then(r=>r.json())
   assert.equal(Number(reread[0].price),1500,'Saved price is visible to customers')
+  assert.equal((await admin('delete',{id:created.row.id,revision:String(created.row.revision)})).status,409,'Stale deletion is rejected')
+  assert.equal((await admin('delete',{id:created.row.id,revision:String(updated.row.revision)})).deletedId,created.row.id,'Delete the temporary fixture only')
+  assert.deepEqual(await fetch(base+'/rest/v1/products?id=eq.'+created.row.id,{headers:{apikey:key}}).then(r=>r.json()),[],'Deleted fixture disappears publicly')
+  for(const url of created.row.images)assert.equal((await admin('discardPhoto',{path:url.split('/product-images/')[1]})).status,200)
+  fixtures.length=0
   assert.equal((await admin('logout')).status,200)
   assert.equal((await admin('session')).status,401,'Logout revokes token on the server')
   console.log('Backend checks passed: public reads, password/session checks, denied public writes/RPC/uploads, create, image persistence, edit, concurrency, validation, 3MB limit, and logout.')

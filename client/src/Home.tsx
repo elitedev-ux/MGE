@@ -11,7 +11,7 @@ import { Button } from './components/ui/button'
 import { ProductCard } from './components/ProductCard'
 
 const categoryCards = [
-  { name: 'Charging', note: 'Power for every day', icon: Smartphone },
+  { name: 'Smartphones', note: 'Find your next phone', icon: Smartphone },
   { name: 'Audio', note: 'Premium sound', icon: Headphones },
   { name: 'Wearables', note: 'Stay connected', icon: Watch },
   { name: 'Accessories', note: 'Everyday essentials', icon: Mouse },
@@ -19,7 +19,7 @@ const categoryCards = [
 ]
 
 const heroSlides = [
-  { tone: 'phone', label: 'Phone', kicker: 'A considered collection. An everyday upgrade.', title: <>Good tech.<br /><span>Great possibilities.</span></>, description: 'The accessories you reach for. The details that make a difference. Find your everyday upgrade at MGE.', image: '/mge-phone-podium.png', alt: 'Two graphite smartphones on a silver display stand', href: '/shop?category=Charging', category: 'Accessories', cta: 'Explore accessories', note: 'Phone concept shown' },
+  { tone: 'phone', label: 'Phone', kicker: 'A considered collection. An everyday upgrade.', title: <>Good tech.<br /><span>Great possibilities.</span></>, description: 'Explore Apple and Samsung phones, find your favourite colour, and make your next upgrade with MGE.', image: '/mge-phone-podium.png', alt: 'Two graphite smartphones on a silver display stand', href: '/shop?category=Smartphones', category: 'Smartphones', cta: 'Explore phones', note: 'Phone concept shown' },
   { tone: 'laptop', label: 'Laptop', kicker: 'For the ideas that deserve to go further.', title: <>Big ideas.<br /><span>Beautifully in motion.</span></>, description: 'For your next project, your next workspace, your next chapter. Find a laptop that fits the way you work.', image: '/mge-macbook-podium.png', alt: 'MacBook Pro mockup on a silver display stand', href: '/shop?category=Laptops', category: 'Laptops', cta: 'Explore laptops', note: 'MacBook mockup shown' },
   { tone: 'glasses', label: 'Smart glasses', kicker: 'A fresh perspective on the everyday.', title: <>See the world.<br /><span>A little differently.</span></>, description: 'Discover smart glasses and explore a new way to capture moments, listen, and stay connected.', image: '/mge-glasses-hero.png', alt: 'Illustrative black smart glasses', href: '/shop?category=Wearables', category: 'Wearables', cta: 'Explore smart glasses', note: 'Smart-glasses concept shown' },
 ]

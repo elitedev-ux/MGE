@@ -4,7 +4,7 @@ Run npm.cmd run dev and visit http://127.0.0.1:5173/mgeadmin, or use /mgeadmin o
 
 Select a product to edit its details, price, stock, badge, notes, and specifications. Save changes publishes directly to Supabase. Reload refreshes the catalogue; stale revisions are rejected to prevent overwriting another editor's save.
 
-Choose New product to add an item with one to four PNG, JPEG, or WebP photos, up to 3 MB each. The first photo is the main image. Existing products can have their entire gallery replaced by choosing new photos; leaving the upload field empty preserves the current gallery. IDs and source references are preserved. There is no delete-product action.
+Choose New product to add an item with one to four PNG, JPEG, or WebP photos, up to 3 MB each. The first photo is the main image. Existing products can have their entire gallery replaced by choosing new photos; leaving the upload field empty preserves the current gallery. IDs and source references are preserved. To remove an existing product, choose Delete product and confirm its name in the confirmation prompt. Deletion is permanent. A stale revision is rejected; reload before trying again. Images are retained to preserve any shared references. Deleted products leave customer bags and wishlists when the catalogue refreshes.
 
 Product saves do not need a rebuild or GitHub push. Customers fetch the current catalogue on page entry, tab focus, and every minute while visible. Their saved cart is reconciled with live stock only after loading. Connection failures show an explicit retry state instead of old bundled prices.
 

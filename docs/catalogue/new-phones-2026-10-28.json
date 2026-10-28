@@ -1,0 +1,367 @@
+[
+  {
+    "id": "new-iphone-xr-red",
+    "name": "Apple iPhone XR - Red",
+    "brand": "Apple",
+    "category": "Smartphones",
+    "price": 190000,
+    "price_is_placeholder": true,
+    "original": null,
+    "image": "/products/new-phones/iphone-xr-red-1.jpg",
+    "images": [
+      "/products/new-phones/iphone-xr-red-1.jpg"
+    ],
+    "badge": null,
+    "specs": {
+      "Color": "Red",
+      "Storage": "Confirm with MGE",
+      "Condition": "Confirm with MGE",
+      "Battery health": "Confirm with MGE",
+      "Network lock": "Confirm with MGE"
+    },
+    "description": "Apple iPhone XR - Red in the supplied product photos. Contact MGE to confirm the exact configuration and availability before ordering.",
+    "stock": null,
+    "identification": "visual-match",
+    "details_note": "Model family inferred from the supplied image; confirm the exact model and size with MGE. Storage is not shown; confirm with MGE. Condition, battery health, network lock, warranty and availability require confirmation. Label claims are not independent inspection results. Price is an editable placeholder.",
+    "sources": []
+  },
+  {
+    "id": "new-iphone-xr-black",
+    "name": "Apple iPhone XR - Black",
+    "brand": "Apple",
+    "category": "Smartphones",
+    "price": 190000,
+    "price_is_placeholder": true,
+    "original": null,
+    "image": "/products/new-phones/iphone-xr-black-1.jpg",
+    "images": [
+      "/products/new-phones/iphone-xr-black-1.jpg"
+    ],
+    "badge": null,
+    "specs": {
+      "Color": "Black",
+      "Storage": "Confirm with MGE",
+      "Condition": "Confirm with MGE",
+      "Battery health": "Confirm with MGE",
+      "Network lock": "Confirm with MGE"
+    },
+    "description": "Apple iPhone XR - Black in the supplied product photos. Contact MGE to confirm the exact configuration and availability before ordering.",
+    "stock": null,
+    "identification": "visual-match",
+    "details_note": "Model family inferred from the supplied image; confirm the exact model and size with MGE. Storage is not shown; confirm with MGE. Condition, battery health, network lock, warranty and availability require confirmation. Label claims are not independent inspection results. Price is an editable placeholder.",
+    "sources": []
+  },
+  {
+    "id": "new-iphone-11-purple-64gb",
+    "name": "Apple iPhone 11 - Purple - 64GB",
+    "brand": "Apple",
+    "category": "Smartphones",
+    "price": 240000,
+    "price_is_placeholder": true,
+    "original": null,
+    "image": "/products/new-phones/iphone-11-purple-64gb-1.jpg",
+    "images": [
+      "/products/new-phones/iphone-11-purple-64gb-1.jpg",
+      "/products/new-phones/iphone-11-purple-64gb-2.jpg"
+    ],
+    "badge": null,
+    "specs": {
+      "Color": "Purple",
+      "Storage": "64GB",
+      "Condition": "Confirm with MGE",
+      "Battery health": "Confirm with MGE",
+      "Network lock": "Confirm with MGE"
+    },
+    "description": "Apple iPhone 11 - Purple - 64GB in the supplied product photos. The label lists 64GB storage. Contact MGE to confirm the exact configuration and availability before ordering.",
+    "stock": null,
+    "identification": "photo-label",
+    "details_note": "Model and storage transcribed from the supplied photo label. Storage is shown on the photo label. Condition, battery health, network lock, warranty and availability require confirmation. Label claims are not independent inspection results. Price is an editable placeholder.",
+    "sources": []
+  },
+  {
+    "id": "new-iphone-12-blue",
+    "name": "Apple iPhone 12 series - Blue",
+    "brand": "Apple",
+    "category": "Smartphones",
+    "price": 310000,
+    "price_is_placeholder": true,
+    "original": null,
+    "image": "/products/new-phones/iphone-12-blue-1.jpg",
+    "images": [
+      "/products/new-phones/iphone-12-blue-1.jpg"
+    ],
+    "badge": null,
+    "specs": {
+      "Color": "Blue",
+      "Storage": "Confirm with MGE",
+      "Condition": "Confirm with MGE",
+      "Battery health": "Confirm with MGE",
+      "Network lock": "Confirm with MGE"
+    },
+    "description": "Apple iPhone 12 series - Blue in the supplied product photos. Contact MGE to confirm the exact configuration and availability before ordering.",
+    "stock": null,
+    "identification": "visual-match",
+    "details_note": "Model family inferred from the supplied image; confirm the exact model and size with MGE. Storage is not shown; confirm with MGE. Condition, battery health, network lock, warranty and availability require confirmation. Label claims are not independent inspection results. Price is an editable placeholder.",
+    "sources": []
+  },
+  {
+    "id": "new-galaxy-s21-dark",
+    "name": "Samsung Galaxy S21 series - Dark Gray",
+    "brand": "Samsung",
+    "category": "Smartphones",
+    "price": 290000,
+    "price_is_placeholder": true,
+    "original": null,
+    "image": "/products/new-phones/galaxy-s21-dark-1.jpg",
+    "images": [
+      "/products/new-phones/galaxy-s21-dark-1.jpg"
+    ],
+    "badge": null,
+    "specs": {
+      "Color": "Dark Gray",
+      "Storage": "Confirm with MGE",
+      "Condition": "Confirm with MGE",
+      "Battery health": "Confirm with MGE",
+      "Network lock": "Confirm with MGE"
+    },
+    "description": "Samsung Galaxy S21 series - Dark Gray in the supplied product photos. Contact MGE to confirm the exact configuration and availability before ordering.",
+    "stock": null,
+    "identification": "visual-match",
+    "details_note": "Model family inferred from the supplied image; confirm the exact model and size with MGE. Storage is not shown; confirm with MGE. Condition, battery health, network lock, warranty and availability require confirmation. Label claims are not independent inspection results. Price is an editable placeholder.",
+    "sources": []
+  },
+  {
+    "id": "new-iphone-11-black",
+    "name": "Apple iPhone 11 - Black",
+    "brand": "Apple",
+    "category": "Smartphones",
+    "price": 240000,
+    "price_is_placeholder": true,
+    "original": null,
+    "image": "/products/new-phones/iphone-11-black-1.jpg",
+    "images": [
+      "/products/new-phones/iphone-11-black-1.jpg"
+    ],
+    "badge": null,
+    "specs": {
+      "Color": "Black",
+      "Storage": "Confirm with MGE",
+      "Condition": "Confirm with MGE",
+      "Battery health": "Confirm with MGE",
+      "Network lock": "Confirm with MGE"
+    },
+    "description": "Apple iPhone 11 - Black in the supplied product photos. Contact MGE to confirm the exact configuration and availability before ordering.",
+    "stock": null,
+    "identification": "visual-match",
+    "details_note": "Model family inferred from the supplied image; confirm the exact model and size with MGE. Storage is not shown; confirm with MGE. Condition, battery health, network lock, warranty and availability require confirmation. Label claims are not independent inspection results. Price is an editable placeholder.",
+    "sources": []
+  },
+  {
+    "id": "new-iphone-xr-white-64gb",
+    "name": "Apple iPhone XR - White - 64GB",
+    "brand": "Apple",
+    "category": "Smartphones",
+    "price": 190000,
+    "price_is_placeholder": true,
+    "original": null,
+    "image": "/products/new-phones/iphone-xr-white-64gb-1.jpg",
+    "images": [
+      "/products/new-phones/iphone-xr-white-64gb-1.jpg"
+    ],
+    "badge": null,
+    "specs": {
+      "Color": "White",
+      "Storage": "64GB",
+      "Condition": "Confirm with MGE",
+      "Battery health": "Confirm with MGE",
+      "Network lock": "Confirm with MGE"
+    },
+    "description": "Apple iPhone XR - White - 64GB in the supplied product photos. The label lists 64GB storage. Contact MGE to confirm the exact configuration and availability before ordering.",
+    "stock": null,
+    "identification": "visual-match",
+    "details_note": "Model family inferred from the supplied image; confirm the exact model and size with MGE. Storage is shown on the photo label. Condition, battery health, network lock, warranty and availability require confirmation. Label claims are not independent inspection results. Price is an editable placeholder.",
+    "sources": []
+  },
+  {
+    "id": "new-iphone-13-dark",
+    "name": "Apple iPhone 13 series - Dark Blue",
+    "brand": "Apple",
+    "category": "Smartphones",
+    "price": 420000,
+    "price_is_placeholder": true,
+    "original": null,
+    "image": "/products/new-phones/iphone-13-dark-1.jpg",
+    "images": [
+      "/products/new-phones/iphone-13-dark-1.jpg"
+    ],
+    "badge": null,
+    "specs": {
+      "Color": "Dark Blue",
+      "Storage": "Confirm with MGE",
+      "Condition": "Confirm with MGE",
+      "Battery health": "Confirm with MGE",
+      "Network lock": "Confirm with MGE"
+    },
+    "description": "Apple iPhone 13 series - Dark Blue in the supplied product photos. Contact MGE to confirm the exact configuration and availability before ordering.",
+    "stock": null,
+    "identification": "visual-match",
+    "details_note": "Model family inferred from the supplied image; confirm the exact model and size with MGE. Storage is not shown; confirm with MGE. Condition, battery health, network lock, warranty and availability require confirmation. Label claims are not independent inspection results. Price is an editable placeholder.",
+    "sources": []
+  },
+  {
+    "id": "new-iphone-12-red-64gb",
+    "name": "Apple iPhone 12 - Red - 64GB",
+    "brand": "Apple",
+    "category": "Smartphones",
+    "price": 310000,
+    "price_is_placeholder": true,
+    "original": null,
+    "image": "/products/new-phones/iphone-12-red-64gb-1.jpg",
+    "images": [
+      "/products/new-phones/iphone-12-red-64gb-1.jpg"
+    ],
+    "badge": null,
+    "specs": {
+      "Color": "Red",
+      "Storage": "64GB",
+      "Condition": "Confirm with MGE",
+      "Battery health": "Confirm with MGE",
+      "Network lock": "Confirm with MGE"
+    },
+    "description": "Apple iPhone 12 - Red - 64GB in the supplied product photos. The label lists 64GB storage. Contact MGE to confirm the exact configuration and availability before ordering.",
+    "stock": null,
+    "identification": "photo-label",
+    "details_note": "Model and storage transcribed from the supplied photo label. Storage is shown on the photo label. Condition, battery health, network lock, warranty and availability require confirmation. Label claims are not independent inspection results. Price is an editable placeholder.",
+    "sources": []
+  },
+  {
+    "id": "new-iphone-11-pro-64gb",
+    "name": "Apple iPhone 11 Pro - 64GB",
+    "brand": "Apple",
+    "category": "Smartphones",
+    "price": 330000,
+    "price_is_placeholder": true,
+    "original": null,
+    "image": "/products/new-phones/iphone-11-pro-64gb-1.jpg",
+    "images": [
+      "/products/new-phones/iphone-11-pro-64gb-1.jpg"
+    ],
+    "badge": null,
+    "specs": {
+      "Color": "Dark finish",
+      "Storage": "64GB",
+      "Condition": "Confirm with MGE",
+      "Battery health": "Confirm with MGE",
+      "Network lock": "Confirm with MGE"
+    },
+    "description": "Apple iPhone 11 Pro - 64GB in the supplied product photos. The label lists 64GB storage. Contact MGE to confirm the exact configuration and availability before ordering.",
+    "stock": null,
+    "identification": "photo-label",
+    "details_note": "Model and storage transcribed from the supplied photo label. Storage is shown on the photo label. Condition, battery health, network lock, warranty and availability require confirmation. Label claims are not independent inspection results. Price is an editable placeholder.",
+    "sources": []
+  },
+  {
+    "id": "new-iphone-12-pro-256gb",
+    "name": "Apple iPhone 12 Pro - 256GB",
+    "brand": "Apple",
+    "category": "Smartphones",
+    "price": 440000,
+    "price_is_placeholder": true,
+    "original": null,
+    "image": "/products/new-phones/iphone-12-pro-256gb-1.jpg",
+    "images": [
+      "/products/new-phones/iphone-12-pro-256gb-1.jpg"
+    ],
+    "badge": null,
+    "specs": {
+      "Color": "Graphite",
+      "Storage": "256GB",
+      "Condition": "Confirm with MGE",
+      "Battery health": "Confirm with MGE",
+      "Network lock": "Confirm with MGE"
+    },
+    "description": "Apple iPhone 12 Pro - 256GB in the supplied product photos. The label lists 256GB storage. Contact MGE to confirm the exact configuration and availability before ordering.",
+    "stock": null,
+    "identification": "photo-label",
+    "details_note": "Model and storage transcribed from the supplied photo label. Storage is shown on the photo label. Condition, battery health, network lock, warranty and availability require confirmation. Label claims are not independent inspection results. Price is an editable placeholder.",
+    "sources": []
+  },
+  {
+    "id": "new-iphone-13-red-128gb",
+    "name": "Apple iPhone 13 - Red - 128GB",
+    "brand": "Apple",
+    "category": "Smartphones",
+    "price": 420000,
+    "price_is_placeholder": true,
+    "original": null,
+    "image": "/products/new-phones/iphone-13-red-128gb-1.jpg",
+    "images": [
+      "/products/new-phones/iphone-13-red-128gb-1.jpg"
+    ],
+    "badge": null,
+    "specs": {
+      "Color": "Red",
+      "Storage": "128GB",
+      "Condition": "Confirm with MGE",
+      "Battery health": "Confirm with MGE",
+      "Network lock": "Confirm with MGE"
+    },
+    "description": "Apple iPhone 13 - Red - 128GB in the supplied product photos. The label lists 128GB storage. Contact MGE to confirm the exact configuration and availability before ordering.",
+    "stock": null,
+    "identification": "photo-label",
+    "details_note": "Model and storage transcribed from the supplied photo label. Storage is shown on the photo label. Condition, battery health, network lock, warranty and availability require confirmation. Label claims are not independent inspection results. Price is an editable placeholder.",
+    "sources": []
+  },
+  {
+    "id": "new-galaxy-s21-violet",
+    "name": "Samsung Galaxy S21 series - Violet",
+    "brand": "Samsung",
+    "category": "Smartphones",
+    "price": 290000,
+    "price_is_placeholder": true,
+    "original": null,
+    "image": "/products/new-phones/galaxy-s21-violet-1.jpg",
+    "images": [
+      "/products/new-phones/galaxy-s21-violet-1.jpg"
+    ],
+    "badge": null,
+    "specs": {
+      "Color": "Violet",
+      "Storage": "Confirm with MGE",
+      "Condition": "Confirm with MGE",
+      "Battery health": "Confirm with MGE",
+      "Network lock": "Confirm with MGE"
+    },
+    "description": "Samsung Galaxy S21 series - Violet in the supplied product photos. Contact MGE to confirm the exact configuration and availability before ordering.",
+    "stock": null,
+    "identification": "visual-match",
+    "details_note": "Model family inferred from the supplied image; confirm the exact model and size with MGE. Storage is not shown; confirm with MGE. Condition, battery health, network lock, warranty and availability require confirmation. Label claims are not independent inspection results. Price is an editable placeholder.",
+    "sources": []
+  },
+  {
+    "id": "new-iphone-xr-yellow",
+    "name": "Apple iPhone XR - Yellow",
+    "brand": "Apple",
+    "category": "Smartphones",
+    "price": 190000,
+    "price_is_placeholder": true,
+    "original": null,
+    "image": "/products/new-phones/iphone-xr-yellow-1.jpg",
+    "images": [
+      "/products/new-phones/iphone-xr-yellow-1.jpg"
+    ],
+    "badge": null,
+    "specs": {
+      "Color": "Yellow",
+      "Storage": "Confirm with MGE",
+      "Condition": "Confirm with MGE",
+      "Battery health": "Confirm with MGE",
+      "Network lock": "Confirm with MGE"
+    },
+    "description": "Apple iPhone XR - Yellow in the supplied product photos. Contact MGE to confirm the exact configuration and availability before ordering.",
+    "stock": null,
+    "identification": "visual-match",
+    "details_note": "Model family inferred from the supplied image; confirm the exact model and size with MGE. Storage is not shown; confirm with MGE. Condition, battery health, network lock, warranty and availability require confirmation. Label claims are not independent inspection results. Price is an editable placeholder.",
+    "sources": []
+  }
+]

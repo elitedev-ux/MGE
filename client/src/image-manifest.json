@@ -1403,6 +1403,276 @@
       }
     ]
   },
+  "/products/new-phones/galaxy-s21-dark-1.jpg": {
+    "width": 1024,
+    "height": 1024,
+    "variants": [
+      {
+        "width": 320,
+        "src": "/optimized/galaxy-s21-dark-1-9536323788d9-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/optimized/galaxy-s21-dark-1-9536323788d9-640.webp"
+      },
+      {
+        "width": 1024,
+        "src": "/optimized/galaxy-s21-dark-1-9536323788d9-1024.webp"
+      }
+    ]
+  },
+  "/products/new-phones/galaxy-s21-violet-1.jpg": {
+    "width": 1024,
+    "height": 1024,
+    "variants": [
+      {
+        "width": 320,
+        "src": "/optimized/galaxy-s21-violet-1-99f18b20855e-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/optimized/galaxy-s21-violet-1-99f18b20855e-640.webp"
+      },
+      {
+        "width": 1024,
+        "src": "/optimized/galaxy-s21-violet-1-99f18b20855e-1024.webp"
+      }
+    ]
+  },
+  "/products/new-phones/iphone-11-black-1.jpg": {
+    "width": 1024,
+    "height": 1024,
+    "variants": [
+      {
+        "width": 320,
+        "src": "/optimized/iphone-11-black-1-514dbe22fe41-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/optimized/iphone-11-black-1-514dbe22fe41-640.webp"
+      },
+      {
+        "width": 1024,
+        "src": "/optimized/iphone-11-black-1-514dbe22fe41-1024.webp"
+      }
+    ]
+  },
+  "/products/new-phones/iphone-11-pro-64gb-1.jpg": {
+    "width": 1024,
+    "height": 1024,
+    "variants": [
+      {
+        "width": 320,
+        "src": "/optimized/iphone-11-pro-64gb-1-de2272e763bc-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/optimized/iphone-11-pro-64gb-1-de2272e763bc-640.webp"
+      },
+      {
+        "width": 1024,
+        "src": "/optimized/iphone-11-pro-64gb-1-de2272e763bc-1024.webp"
+      }
+    ]
+  },
+  "/products/new-phones/iphone-11-purple-64gb-1.jpg": {
+    "width": 1024,
+    "height": 1024,
+    "variants": [
+      {
+        "width": 320,
+        "src": "/optimized/iphone-11-purple-64gb-1-c7d4a4436f23-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/optimized/iphone-11-purple-64gb-1-c7d4a4436f23-640.webp"
+      },
+      {
+        "width": 1024,
+        "src": "/optimized/iphone-11-purple-64gb-1-c7d4a4436f23-1024.webp"
+      }
+    ]
+  },
+  "/products/new-phones/iphone-11-purple-64gb-2.jpg": {
+    "width": 1024,
+    "height": 1024,
+    "variants": [
+      {
+        "width": 320,
+        "src": "/optimized/iphone-11-purple-64gb-2-45a0a8619758-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/optimized/iphone-11-purple-64gb-2-45a0a8619758-640.webp"
+      },
+      {
+        "width": 1024,
+        "src": "/optimized/iphone-11-purple-64gb-2-45a0a8619758-1024.webp"
+      }
+    ]
+  },
+  "/products/new-phones/iphone-12-blue-1.jpg": {
+    "width": 1024,
+    "height": 1024,
+    "variants": [
+      {
+        "width": 320,
+        "src": "/optimized/iphone-12-blue-1-928f2d8b0987-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/optimized/iphone-12-blue-1-928f2d8b0987-640.webp"
+      },
+      {
+        "width": 1024,
+        "src": "/optimized/iphone-12-blue-1-928f2d8b0987-1024.webp"
+      }
+    ]
+  },
+  "/products/new-phones/iphone-12-pro-256gb-1.jpg": {
+    "width": 896,
+    "height": 1195,
+    "variants": [
+      {
+        "width": 320,
+        "src": "/optimized/iphone-12-pro-256gb-1-c3c4eb598bd4-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/optimized/iphone-12-pro-256gb-1-c3c4eb598bd4-640.webp"
+      },
+      {
+        "width": 896,
+        "src": "/optimized/iphone-12-pro-256gb-1-c3c4eb598bd4-896.webp"
+      }
+    ]
+  },
+  "/products/new-phones/iphone-12-red-64gb-1.jpg": {
+    "width": 1024,
+    "height": 1024,
+    "variants": [
+      {
+        "width": 320,
+        "src": "/optimized/iphone-12-red-64gb-1-3186d9cfb46f-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/optimized/iphone-12-red-64gb-1-3186d9cfb46f-640.webp"
+      },
+      {
+        "width": 1024,
+        "src": "/optimized/iphone-12-red-64gb-1-3186d9cfb46f-1024.webp"
+      }
+    ]
+  },
+  "/products/new-phones/iphone-13-dark-1.jpg": {
+    "width": 1024,
+    "height": 1024,
+    "variants": [
+      {
+        "width": 320,
+        "src": "/optimized/iphone-13-dark-1-6d7fa2860448-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/optimized/iphone-13-dark-1-6d7fa2860448-640.webp"
+      },
+      {
+        "width": 1024,
+        "src": "/optimized/iphone-13-dark-1-6d7fa2860448-1024.webp"
+      }
+    ]
+  },
+  "/products/new-phones/iphone-13-red-128gb-1.jpg": {
+    "width": 1024,
+    "height": 1024,
+    "variants": [
+      {
+        "width": 320,
+        "src": "/optimized/iphone-13-red-128gb-1-21cd362514a3-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/optimized/iphone-13-red-128gb-1-21cd362514a3-640.webp"
+      },
+      {
+        "width": 1024,
+        "src": "/optimized/iphone-13-red-128gb-1-21cd362514a3-1024.webp"
+      }
+    ]
+  },
+  "/products/new-phones/iphone-xr-black-1.jpg": {
+    "width": 1024,
+    "height": 1024,
+    "variants": [
+      {
+        "width": 320,
+        "src": "/optimized/iphone-xr-black-1-c2128d71fe15-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/optimized/iphone-xr-black-1-c2128d71fe15-640.webp"
+      },
+      {
+        "width": 1024,
+        "src": "/optimized/iphone-xr-black-1-c2128d71fe15-1024.webp"
+      }
+    ]
+  },
+  "/products/new-phones/iphone-xr-red-1.jpg": {
+    "width": 1024,
+    "height": 1024,
+    "variants": [
+      {
+        "width": 320,
+        "src": "/optimized/iphone-xr-red-1-4ff117557b07-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/optimized/iphone-xr-red-1-4ff117557b07-640.webp"
+      },
+      {
+        "width": 1024,
+        "src": "/optimized/iphone-xr-red-1-4ff117557b07-1024.webp"
+      }
+    ]
+  },
+  "/products/new-phones/iphone-xr-white-64gb-1.jpg": {
+    "width": 1024,
+    "height": 1024,
+    "variants": [
+      {
+        "width": 320,
+        "src": "/optimized/iphone-xr-white-64gb-1-fcdd48babb39-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/optimized/iphone-xr-white-64gb-1-fcdd48babb39-640.webp"
+      },
+      {
+        "width": 1024,
+        "src": "/optimized/iphone-xr-white-64gb-1-fcdd48babb39-1024.webp"
+      }
+    ]
+  },
+  "/products/new-phones/iphone-xr-yellow-1.jpg": {
+    "width": 1024,
+    "height": 1024,
+    "variants": [
+      {
+        "width": 320,
+        "src": "/optimized/iphone-xr-yellow-1-dad514f1120d-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/optimized/iphone-xr-yellow-1-dad514f1120d-640.webp"
+      },
+      {
+        "width": 1024,
+        "src": "/optimized/iphone-xr-yellow-1-dad514f1120d-1024.webp"
+      }
+    ]
+  },
   "/mge-phone-podium.png": {
     "width": 1536,
     "height": 1024,

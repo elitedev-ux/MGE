@@ -57,3 +57,8 @@ export async function saveProduct(action:'create'|'update',body:Record<string,un
   publishCatalogue(current.some(p=>p.id===product.id) ? current.map(p=>p.id===product.id?product:p) : [...current,product])
   return {product,revision:String(result.row.revision)}
 }
+export async function deleteProduct(id:string,revision:string) {
+  const result=await adminRequest('delete',{id,revision})
+  if(result.deletedId!==id)throw new Error('Deletion could not be confirmed. Reload the catalogue before retrying.')
+  publishCatalogue(useCatalogue.getState().products.filter(p=>p.id!==id))
+}

@@ -2,7 +2,7 @@ import { readFile, writeFile, rename, mkdir, unlink } from 'node:fs/promises'
 import { createHash } from 'node:crypto'
 import { z } from 'zod'
 
-const categories = ['Laptops','Audio','Charging','Wearables','Gaming','Lighting','Office','Accessories']
+const categories = ['Smartphones','Laptops','Audio','Charging','Wearables','Gaming','Lighting','Office','Accessories']
 const text = z.string().trim().min(1).max(300)
 const edits = z.object({
   name: text, brand: text, category: z.enum(categories),

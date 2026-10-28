@@ -1836,6 +1836,6 @@ export const products: Product[] = [
 ]
 
 export const money = new Intl.NumberFormat('en-NG',{style:'currency',currency:'NGN',maximumFractionDigits:0}).format
-export const categories = ['Laptops','Audio','Charging','Wearables','Gaming','Lighting','Office','Accessories']
+export const categories = ['Smartphones','Laptops','Audio','Charging','Wearables','Gaming','Lighting','Office','Accessories']
 // Quantity limit for preview bags; not a claim about inventory.
 export const purchaseLimit = (product: Product) => product.stock ?? 99

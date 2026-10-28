@@ -3,7 +3,7 @@ import { z } from 'npm:zod@3.25.76'
 const text = z.string().trim().min(1).max(300)
 export const edits = z.object({
   name:text, brand:text,
-  category:z.enum(['Laptops','Audio','Charging','Wearables','Gaming','Lighting','Office','Accessories']),
+  category:z.enum(['Smartphones','Laptops','Audio','Charging','Wearables','Gaming','Lighting','Office','Accessories']),
   price:z.number().finite().min(0).max(1e10), priceIsPlaceholder:z.boolean(),
   original:z.number().finite().min(0).max(1e10).nullable(),
   stock:z.number().int().min(0).max(1000000).nullable(),

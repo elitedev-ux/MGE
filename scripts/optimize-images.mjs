@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url'
 const publicRoot = new URL('../client/public/',import.meta.url)
 const output = new URL('optimized/',publicRoot)
 await mkdir(output,{recursive:true})
-const paths = (await readdir(new URL('products/',publicRoot))).filter(name=>/\.(png|jpe?g|webp)$/i.test(name)).map(name=>'products/'+name)
+const paths = (await readdir(new URL('products/',publicRoot),{recursive:true})).filter(name=>/\.(png|jpe?g|webp)$/i.test(name)).map(name=>'products/'+name.replaceAll('\\','/'))
 paths.push('mge-phone-podium.png','mge-macbook-podium.png','mge-glasses-hero.png','mge-brand-logo.png')
 const manifest={}
 let originalBytes=0,optimizedBytes=0

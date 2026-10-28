@@ -5,7 +5,7 @@ import { categories, money, type Product } from './data'
 import { Button } from './components/ui/button'
 import './admin.css'
 import { AdminAccess, lockAdmin } from './AdminAccess'
-import { fetchCatalogue, publishCatalogue, saveProduct } from './catalogue-api'
+import { fetchCatalogue, publishCatalogue, saveProduct, deleteProduct } from './catalogue-api'
 import { OptimizedImage } from './components/OptimizedImage'
 
 type Draft = { name:string; brand:string; category:string; price:string; original:string; stock:string; description:string; badge:string; detailsNote:string; priceIsPlaceholder:boolean; specs:[string,string][] }
@@ -64,6 +64,19 @@ function ProductManager() {
     } catch(e) {setError((e as Error).message)}
     finally {setReadingPhotos(false)}
   }
+  async function removeProduct() {
+    if(!selected || creating || saving || readingPhotos)return
+    const product=selected
+    if(!window.confirm(`Delete "${product.name}"? This permanently removes it from the catalogue and storefront. This cannot be undone.${dirty ? ' Unsaved changes will also be discarded.' : ''}`))return
+    setSaving(true);setError('');setNotice('')
+    try {
+      await deleteProduct(product.id,revisions[product.id])
+      setProducts(items=>items.filter(p=>p.id!==product.id))
+      setRevisions(current=>{const next={...current};delete next[product.id];return next})
+      setSelected(null);setDraft(null);setPhotos([]);setCreating(false)
+      setNotice(`"${product.name}" was deleted from your collection.`)
+    }catch(e){setError((e as Error).message)}finally{setSaving(false)}
+  }
   async function save(event:React.FormEvent) {
     event.preventDefault()
     if (!draft || !selected || saving || readingPhotos) return
@@ -117,7 +130,7 @@ function ProductManager() {
           <Button type="button" variant="outline" onClick={() => field('specs',[...draft.specs,['','']])}><Plus size={15}/> Add specification</Button>
           <label className="admin-note">Product notes<textarea rows={3} maxLength={5000} value={draft.detailsNote} onChange={e => field('detailsNote',e.target.value)}/></label>
           </fieldset>
-          <div className="admin-savebar"><span>{dirty ? 'Unsaved changes' : 'Up to date'}</span><Button type="button" variant="outline" disabled={!dirty || saving || readingPhotos} onClick={() => {if(discard()){if(creating){setCreating(false);setSelected(null);setDraft(null);setPhotos([])}else {setDraft(draftOf(selected));setPhotos([])};setError('')}}}>Discard</Button><Button disabled={!dirty || saving || readingPhotos} type="submit"><Save size={16}/>{saving ? 'Saving…' : creating ? 'Create product' : 'Save changes'}</Button></div>
+          <div className="admin-savebar">{!creating && <Button type="button" variant="outline" className="admin-delete" disabled={saving || readingPhotos} onClick={() => void removeProduct()}>Delete product</Button>}<span>{dirty ? 'Unsaved changes' : 'Up to date'}</span><Button type="button" variant="outline" disabled={!dirty || saving || readingPhotos} onClick={() => {if(discard()){if(creating){setCreating(false);setSelected(null);setDraft(null);setPhotos([])}else {setDraft(draftOf(selected));setPhotos([])};setError('')}}}>Discard</Button><Button disabled={!dirty || saving || readingPhotos} type="submit"><Save size={16}/>{saving ? 'Saving…' : creating ? 'Create product' : 'Save changes'}</Button></div>
         </form>}
       </div>}
     </main>

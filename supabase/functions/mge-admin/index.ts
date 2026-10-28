@@ -44,6 +44,13 @@ Deno.serve(async req => {
     if(!/^[a-f0-9]{64}$/.test(token) || !await rpc('mge_admin_authorize',{p_token:token}))return json({error:'Your session has expired. Enter your password to continue.'},401)
     if(input.action==='logout'){await rpc('mge_admin_logout',{p_token:token});return json({ok:true})}
     if(input.action==='session')return json({ok:true})
+    if(input.action==='delete') {
+      if(typeof input.id!=='string' || !/^[a-z0-9][a-z0-9-]{0,119}$/.test(input.id) || !Number.isSafeInteger(Number(input.revision)) || Number(input.revision)<1)return json({error:'Invalid product or revision.'},400)
+      const rows=await api('/rest/v1/products?id=eq.'+encodeURIComponent(input.id)+'&revision=eq.'+Number(input.revision),{method:'DELETE',headers:{Prefer:'return=representation'}})
+      if(!rows?.length)return json({error:'This product was changed or deleted in another editor. Reload the catalogue before deleting.'},409)
+      // Retain images: another product or an open customer page may still reference them.
+      return json({deletedId:rows[0].id})
+    }
     if(input.action==='discardPhoto') {
       const path=input.path
       if(typeof path!=='string' || !/^product-[a-f0-9-]{36}\/[a-f0-9-]{36}\.(png|jpg|webp)$/.test(path))return json({error:'Invalid photo path.'},400)
