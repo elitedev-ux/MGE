@@ -7,5 +7,6 @@ import { fileURLToPath } from 'node:url'
 export default defineConfig({
   root: fileURLToPath(new URL('.', import.meta.url)),
   plugins: [react(), tailwindcss()],
+  build: { target: 'es2018' },
   server: { port: 5173, strictPort: true },
 })

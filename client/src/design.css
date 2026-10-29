@@ -111,3 +111,4 @@ footer{background:#0c1b2e;color:#f3f7fc}.footer-lead{display:flex;align-items:ce
 @media(max-width:1200px){.container.footer-lead,.container.footer-grid,.container.footer-bottom{padding-inline:48px}}
 @media(max-width:700px){.container.footer-lead,.container.footer-grid,.container.footer-bottom{padding-inline:24px}}
 .route-loading{min-height:100vh;display:grid;place-items:center;color:#67758a;font-size:14px}
+.startup-fallback{min-height:100vh;display:grid;place-content:center;gap:14px;padding:32px;text-align:center;color:#172131}.startup-fallback h1{font-size:clamp(28px,5vw,46px)}.startup-fallback p{color:#657286}.startup-fallback button{justify-self:center;border:0;border-radius:8px;background:#1765ec;color:#fff;padding:13px 20px;font-weight:700}
