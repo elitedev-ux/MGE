@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState, type FormEvent } from 'react'
 import { Link, Route, Routes, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { ArrowRight, ChevronLeft, ChevronRight, CreditCard, Headphones, Heart, Laptop, Menu, Minus, Mouse, Pause, Play, Plus, RotateCcw, Search, ShieldCheck, ShoppingBag, Smartphone, Truck, Watch, X } from 'lucide-react'
 import { OptimizedImage } from './components/OptimizedImage'
@@ -13,21 +13,81 @@ import { useShop } from './store'
 import { whatsappCheckoutUrl } from './checkout'
 import { Button } from './components/ui/button'
 
+function normalizeSearch(value: string) {
+  return value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
+}
+
+function searchTokens(value: string) {
+  return normalizeSearch(value).split(' ').filter(token => token.length > 1)
+}
+
+function productSearchText(product: Product) {
+  return normalizeSearch([product.id, product.name, product.brand, product.category, product.description, ...Object.entries(product.specs).flat()].join(' '))
+}
+
+function findSearchMatches(products: Product[], query: string) {
+  const tokens = searchTokens(query)
+  return tokens.length ? products.filter(product => {
+    const text = productSearchText(product)
+    return tokens.every(token => text.includes(token))
+  }) : []
+}
+
+function findRelatedProducts(products: Product[], query: string) {
+  const tokens = searchTokens(query)
+  const normalizedQuery = normalizeSearch(query)
+  const categoryHints = [
+    { category: 'Smartphones', terms: ['phone', 'smartphone', 'iphone', 'mobile', 'android', 'galaxy', 'pixel'] },
+    { category: 'Laptops', terms: ['laptop', 'notebook', 'computer', 'pc'] },
+    { category: 'Audio', terms: ['audio', 'headphone', 'earbud', 'earphone', 'speaker', 'headset', 'microphone', 'airpod'] },
+    { category: 'Charging', terms: ['charger', 'charging', 'powerbank', 'power bank', 'cable', 'adapter'] },
+    { category: 'Wearables', terms: ['wearable', 'watch', 'glasses'] },
+    { category: 'Gaming', terms: ['gaming', 'playstation', 'xbox', 'controller', 'console'] },
+    { category: 'Lighting', terms: ['lighting', 'light', 'ring light', 'video kit'] },
+    { category: 'Office', terms: ['office', 'printer', 'tablet stand'] },
+  ]
+  const hintedCategory = categoryHints.find(hint => hint.terms.some(term => normalizedQuery.includes(normalizeSearch(term))))?.category
+
+  return products.map((product, index) => {
+    const text = productSearchText(product)
+    const tokenScore = tokens.reduce((score, token) => score + (text.includes(token) ? 2 : 0), 0)
+    const categoryScore = product.category === hintedCategory ? tokens.length + 1 : 0
+    return { product, index, score: tokenScore + categoryScore }
+  }).filter(item => item.score > 0)
+    .sort((a, b) => b.score - a.score || a.index - b.index)
+    .slice(0, 4)
+    .map(item => item.product)
+}
+
 function Header() {
   const [open, setOpen] = useState(false)
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false)
   const [search, setSearch] = useState('')
+  const searchInput = useRef<HTMLInputElement>(null)
   const navigate = useNavigate()
   const location = useLocation()
+  const products = useProducts()
   const { cart, wishlist } = useShop()
   const cartCount = Object.values(cart).reduce((a, b) => a + b, 0)
-  useEffect(() => { setOpen(false); window.scrollTo(0, 0) }, [location.pathname, location.search])
+  const submitSearch = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const term = search.trim()
+    if (!term) return
+    const matches = findSearchMatches(products, term)
+    setOpen(false)
+    setMobileSearchOpen(false)
+    setSearch('')
+    navigate(matches.length === 1 ? `/product/${matches[0].id}` : `/shop?q=${encodeURIComponent(term)}`)
+  }
+  useEffect(() => { if (mobileSearchOpen) searchInput.current?.focus() }, [mobileSearchOpen])
+  useEffect(() => { setOpen(false); setMobileSearchOpen(false); window.scrollTo(0, 0) }, [location.pathname, location.search])
   return <>
-    <header><div className="nav-shell">
+    <header className={mobileSearchOpen ? 'search-open' : ''}><div className={`nav-shell${mobileSearchOpen ? ' search-open' : ''}`}>
       <Link className="logo-lockup" to="/" aria-label="MGE home"><OptimizedImage sizes="150px" src="/mge-brand-logo.png" alt="Miztashogofunmi Global Enterprise" width="124" height="50" /></Link>
       <nav id="main-navigation" className={open ? 'open' : ''} aria-label="Main navigation">
         {[{label:'Discover',to:'/'},{label:'Shop all',to:'/shop'},{label:'Smartphones',to:'/shop?category=Smartphones'},{label:'Audio',to:'/shop?category=Audio'},{label:'Laptops',to:'/shop?category=Laptops'},{label:'Accessories',to:'/shop?category=Accessories'}].map(item=><Link key={item.to} to={item.to} className={location.pathname+location.search===item.to?'active':''} aria-current={location.pathname+location.search===item.to?'page':undefined}>{item.label}</Link>)}
       </nav>
-      <div className="nav-actions"><form className="search site-search" role="search" onSubmit={(e) => { e.preventDefault(); navigate(`/shop?q=${encodeURIComponent(search)}`) }}><input aria-label="Search products" placeholder="Search the MGE collection" value={search} onChange={(e) => setSearch(e.target.value)} /><button aria-label="Submit search"><Search size={18} /></button></form><Link className="icon-button counted-icon" to="/wishlist" aria-label="Wishlist"><Heart size={20} />{wishlist.length > 0 && <span>{wishlist.length}</span>}</Link><Link className="icon-button counted-icon" to="/cart" aria-label="Shopping bag"><ShoppingBag size={20} />{cartCount > 0 && <span>{cartCount}</span>}</Link><button className="icon-button mobile-menu" aria-label="Toggle navigation" aria-expanded={open} aria-controls="main-navigation" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button></div>
+      <div className="nav-actions"><form id="header-product-search" className="search site-search" role="search" onSubmit={submitSearch}><input ref={searchInput} aria-label="Search products" placeholder="Search the MGE collection" value={search} onChange={(e) => setSearch(e.target.value)} /><button type="submit" aria-label="Submit product search"><Search size={18} /></button></form><button type="button" className="icon-button mobile-search-toggle" aria-label={mobileSearchOpen ? 'Close product search' : 'Open product search'} aria-expanded={mobileSearchOpen} aria-controls="header-product-search" onClick={() => { setMobileSearchOpen(!mobileSearchOpen); setOpen(false) }}>{mobileSearchOpen ? <X size={20} /> : <Search size={20} />}</button><Link className="icon-button counted-icon" to="/wishlist" aria-label="Wishlist"><Heart size={20} />{wishlist.length > 0 && <span>{wishlist.length}</span>}</Link><Link className="icon-button counted-icon" to="/cart" aria-label="Shopping bag"><ShoppingBag size={20} />{cartCount > 0 && <span>{cartCount}</span>}</Link><button className="icon-button mobile-menu" aria-label="Toggle navigation" aria-expanded={open} aria-controls="main-navigation" onClick={() => { setOpen(!open); setMobileSearchOpen(false) }}>{open ? <X /> : <Menu />}</button></div>
     </div></header>
   </>
 }
@@ -38,8 +98,12 @@ function Shop() {
   const data = products
   const category = params.get('category') || ''; const query = params.get('q') || ''; const sort = params.get('sort') || 'featured'; const max = Number(params.get('max') || 3000000)
   const update = (k: string, v: string) => { const next = new URLSearchParams(params); v ? next.set(k, v) : next.delete(k); setParams(next) }
-  const filtered = data.filter(p => (!category || p.category === category) && `${p.name} ${p.brand} ${Object.values(p.specs).join(' ')}`.toLowerCase().includes(query.toLowerCase()) && p.price <= max && (!params.get('deals') || p.original) && (!params.get('brand') || p.brand === params.get('brand'))).sort((a, b) => sort === 'price-low' ? a.price - b.price : sort === 'price-high' ? b.price - a.price : sort === 'newest' ? products.indexOf(b) - products.indexOf(a) : 0)
-  return <section className="container page"><p className="purple-kicker">THE MGE COLLECTION</p><h1>{params.get('deals') ? 'Better prices. Same great tech.' : category || 'Find your next favourite.'}</h1><p className="muted">Explore the MGE collection. Placeholder prices are labelled; confirm availability before ordering.</p><div className="shop-layout"><aside className="filters"><h3>Categories</h3>{['', ...categories].map(c => <button className={category === c ? 'selected' : ''} key={c} onClick={() => update('category', c)}>{c || 'All products'}<ChevronRight size={14} /></button>)}<label>Brand<select value={params.get('brand') || ''} onChange={e => update('brand', e.target.value)}><option value="">All brands</option>{[...new Set(products.map(p => p.brand))].map(b => <option key={b}>{b}</option>)}</select></label><label>Maximum price <span>{money(max)}</span><input type="range" min="0" max="3000000" step="1000" value={max} onChange={e => update('max', e.target.value)} /></label><Button variant="ghost" onClick={() => setParams({})}>Reset filters</Button></aside><div><div className="shop-toolbar"><form onSubmit={e => e.preventDefault()}><Search size={17} /><input value={query} onChange={e => update('q', e.target.value)} placeholder="Search products or specifications" aria-label="Search collection" /></form><select aria-label="Sort products" value={sort} onChange={e => update('sort', e.target.value)}><option value="featured">Featured</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option><option value="newest">Newest arrivals</option></select></div><p className="muted small">{filtered.length} products</p><div className="product-grid shop-grid">{filtered.map(p => <ProductCard key={p.id} product={p} />)}</div>{!filtered.length && <div className="empty"><h2>No products found.</h2><p>Try a different search or reset your filters.</p><Button onClick={() => setParams({})}>Reset filters</Button></div>}</div></div></section>
+  const queryMatches = findSearchMatches(data, query)
+  const matchingProducts = query ? queryMatches : data
+  const filtered = matchingProducts.filter(p => (!category || p.category === category) && p.price <= max && (!params.get('deals') || p.original) && (!params.get('brand') || p.brand === params.get('brand'))).sort((a, b) => sort === 'price-low' ? a.price - b.price : sort === 'price-high' ? b.price - a.price : sort === 'newest' ? products.indexOf(b) - products.indexOf(a) : 0)
+  const related = query && !queryMatches.length ? findRelatedProducts(data, query) : []
+  const displayedProducts = filtered.length ? filtered : related
+  return <section className="container page"><p className="purple-kicker">THE MGE COLLECTION</p><h1>{params.get('deals') ? 'Better prices. Same great tech.' : category || (query ? `Search: ${query}` : 'Find your next favourite.')}</h1><p className="muted">Explore the MGE collection. Placeholder prices are labelled; confirm availability before ordering.</p><div className="shop-layout"><aside className="filters"><h3>Categories</h3>{['', ...categories].map(c => <button className={category === c ? 'selected' : ''} key={c} onClick={() => update('category', c)}>{c || 'All products'}<ChevronRight size={14} /></button>)}<label>Brand<select value={params.get('brand') || ''} onChange={e => update('brand', e.target.value)}><option value="">All brands</option>{[...new Set(products.map(p => p.brand))].map(b => <option key={b}>{b}</option>)}</select></label><label>Maximum price <span>{money(max)}</span><input type="range" min="0" max="3000000" step="1000" value={max} onChange={e => update('max', e.target.value)} /></label><Button variant="ghost" onClick={() => setParams({})}>Reset filters</Button></aside><div><div className="shop-toolbar"><form onSubmit={e => e.preventDefault()}><Search size={17} /><input value={query} onChange={e => update('q', e.target.value)} placeholder="Search products or specifications" aria-label="Search collection" /></form><select aria-label="Sort products" value={sort} onChange={e => update('sort', e.target.value)}><option value="featured">Featured</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option><option value="newest">Newest arrivals</option></select></div><p className="muted small">{filtered.length ? `${filtered.length} products` : related.length ? `No exact matches for “${query}”. Related products:` : '0 products'}</p><div className="product-grid shop-grid">{displayedProducts.map(p => <ProductCard key={p.id} product={p} />)}</div>{!displayedProducts.length && <div className="empty"><h2>No products found.</h2><p>Try a different search or reset your filters.</p><Button onClick={() => setParams({})}>Reset filters</Button></div>}</div></div></section>
 }
 
 function ProductPage() {
