@@ -13,6 +13,16 @@ import { useShop } from './store'
 import { whatsappCheckoutUrl } from './checkout'
 import { Button } from './components/ui/button'
 
+const SEARCH_ALIASES: Record<string, string[]> = {
+  apple: ['apple', 'iphone', 'ios', 'ipad', 'macbook', 'airpods'],
+  samsung: ['samsung', 'galaxy', 'android'],
+  google: ['google', 'pixel'],
+  laptop: ['laptop', 'notebook', 'computer', 'pc', 'macbook'],
+  audio: ['audio', 'headphone', 'headphones', 'earbud', 'earbuds', 'speaker', 'airpods'],
+  charger: ['charger', 'charging', 'cable', 'usb', 'adapter', 'powerbank'],
+  wearable: ['watch', 'wearable', 'glasses'],
+}
+
 function normalizeSearch(value: string) {
   return value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
 }
@@ -21,42 +31,93 @@ function searchTokens(value: string) {
   return normalizeSearch(value).split(' ').filter(token => token.length > 1)
 }
 
+function expandSearchTerms(value: string) {
+  const normalizedQuery = normalizeSearch(value)
+  if (!normalizedQuery) return []
+
+  const terms = new Set(normalizedQuery.split(' ').filter(Boolean))
+  for (const term of Array.from(terms)) {
+    for (const aliasList of Object.values(SEARCH_ALIASES)) {
+      if (term === aliasList[0] || aliasList.includes(term)) {
+        aliasList.forEach(alias => terms.add(alias))
+      }
+    }
+  }
+  return Array.from(terms)
+}
+
 function productSearchText(product: Product) {
   return normalizeSearch([product.id, product.name, product.brand, product.category, product.description, ...Object.entries(product.specs).flat()].join(' '))
 }
 
+function scoreProductMatch(product: Product, query: string) {
+  const normalizedQuery = normalizeSearch(query)
+  const terms = expandSearchTerms(query)
+  const text = productSearchText(product)
+  let score = 0
+
+  terms.forEach(term => {
+    if (text.includes(term)) score += 12
+  })
+
+  if (!normalizedQuery) return 0
+
+  const productName = normalizeSearch(product.name)
+  const brand = normalizeSearch(product.brand)
+  const category = normalizeSearch(product.category)
+
+  if (productName.includes(normalizedQuery)) score += 30
+  if (brand.includes(normalizedQuery)) score += 24
+  if (category.includes(normalizedQuery)) score += 18
+
+  if (normalizedQuery.includes('apple') && (brand.includes('apple') || productName.includes('iphone'))) score += 20
+  if (normalizedQuery.includes('iphone') && (productName.includes('iphone') || brand.includes('apple'))) score += 24
+  if (normalizedQuery.includes('phone') && category.includes('smartphone')) score += 14
+  if (normalizedQuery.includes('series') && productName.includes('series')) score += 8
+
+  const queryParts = normalizedQuery.split(' ').filter(Boolean)
+  const allPartsMatch = queryParts.every(part => productName.includes(part) || brand.includes(part) || category.includes(part))
+  if (allPartsMatch && queryParts.length > 1) score += 16
+
+  return score
+}
+
 function findSearchMatches(products: Product[], query: string) {
-  const tokens = searchTokens(query)
-  return tokens.length ? products.filter(product => {
-    const text = productSearchText(product)
-    return tokens.every(token => text.includes(token))
-  }) : []
+  const normalizedQuery = normalizeSearch(query)
+  if (!normalizedQuery) return []
+
+  return products
+    .map(product => ({ product, score: scoreProductMatch(product, query) }))
+    .filter(item => item.score > 0)
+    .sort((a, b) => b.score - a.score || a.product.name.localeCompare(b.product.name))
+    .slice(0, 8)
+    .map(item => item.product)
 }
 
 function findRelatedProducts(products: Product[], query: string) {
-  const tokens = searchTokens(query)
   const normalizedQuery = normalizeSearch(query)
-  const categoryHints = [
-    { category: 'Smartphones', terms: ['phone', 'smartphone', 'iphone', 'mobile', 'android', 'galaxy', 'pixel'] },
-    { category: 'Laptops', terms: ['laptop', 'notebook', 'computer', 'pc'] },
-    { category: 'Audio', terms: ['audio', 'headphone', 'earbud', 'earphone', 'speaker', 'headset', 'microphone', 'airpod'] },
-    { category: 'Charging', terms: ['charger', 'charging', 'powerbank', 'power bank', 'cable', 'adapter'] },
-    { category: 'Wearables', terms: ['wearable', 'watch', 'glasses'] },
-    { category: 'Gaming', terms: ['gaming', 'playstation', 'xbox', 'controller', 'console'] },
-    { category: 'Lighting', terms: ['lighting', 'light', 'ring light', 'video kit'] },
-    { category: 'Office', terms: ['office', 'printer', 'tablet stand'] },
-  ]
-  const hintedCategory = categoryHints.find(hint => hint.terms.some(term => normalizedQuery.includes(normalizeSearch(term))))?.category
+  if (!normalizedQuery) return []
 
-  return products.map((product, index) => {
-    const text = productSearchText(product)
-    const tokenScore = tokens.reduce((score, token) => score + (text.includes(token) ? 2 : 0), 0)
-    const categoryScore = product.category === hintedCategory ? tokens.length + 1 : 0
-    return { product, index, score: tokenScore + categoryScore }
-  }).filter(item => item.score > 0)
+  return products
+    .map((product, index) => ({ product, index, score: scoreProductMatch(product, query) }))
+    .filter(item => item.score > 0)
     .sort((a, b) => b.score - a.score || a.index - b.index)
     .slice(0, 4)
     .map(item => item.product)
+}
+
+function buildSuggestion(product: Product) {
+  const shortName = product.name
+    .replace(/\s*[-–—]\s*.*$/, '')
+    .replace(/\s+series\b/i, '')
+    .trim()
+
+  const meta = product.category === 'Smartphones' ? 'Phones' : product.category
+  return {
+    label: shortName.length > 28 ? `${shortName.slice(0, 25)}…` : shortName,
+    subtitle: `${meta} · ${money(product.price)}`,
+    to: `/product/${product.id}`,
+  }
 }
 
 function Header() {
@@ -85,7 +146,7 @@ function Header() {
     <header className={mobileSearchOpen ? 'search-open' : ''}><div className={`nav-shell${mobileSearchOpen ? ' search-open' : ''}`}>
       <Link className="logo-lockup" to="/" aria-label="MGE home"><OptimizedImage sizes="150px" src="/mge-brand-logo.png" alt="Miztashogofunmi Global Enterprise" width="124" height="50" /></Link>
       <nav id="main-navigation" className={open ? 'open' : ''} aria-label="Main navigation">
-        {[{label:'Discover',to:'/'},{label:'Shop all',to:'/shop'},{label:'Smartphones',to:'/shop?category=Smartphones'},{label:'Audio',to:'/shop?category=Audio'},{label:'Laptops',to:'/shop?category=Laptops'},{label:'Accessories',to:'/shop?category=Accessories'}].map(item=><Link key={item.to} to={item.to} className={location.pathname+location.search===item.to?'active':''} aria-current={location.pathname+location.search===item.to?'page':undefined}>{item.label}</Link>)}
+        {[{label:'Home',to:'/'},{label:'Shop all',to:'/shop'},{label:'Smartphones',to:'/shop?category=Smartphones'},{label:'Audio',to:'/shop?category=Audio'},{label:'Laptops',to:'/shop?category=Laptops'},{label:'Accessories',to:'/shop?category=Accessories'}].map(item=><Link key={item.to} to={item.to} className={location.pathname+location.search===item.to?'active':''} aria-current={location.pathname+location.search===item.to?'page':undefined}>{item.label}</Link>)}
       </nav>
       <div className="nav-actions"><form id="header-product-search" className="search site-search" role="search" onSubmit={submitSearch}><input ref={searchInput} aria-label="Search products" placeholder="Search the MGE collection" value={search} onChange={(e) => setSearch(e.target.value)} /><button type="submit" aria-label="Submit product search"><Search size={18} /></button></form><button type="button" className="icon-button mobile-search-toggle" aria-label={mobileSearchOpen ? 'Close product search' : 'Open product search'} aria-expanded={mobileSearchOpen} aria-controls="header-product-search" onClick={() => { setMobileSearchOpen(!mobileSearchOpen); setOpen(false) }}>{mobileSearchOpen ? <X size={20} /> : <Search size={20} />}</button><Link className="icon-button counted-icon" to="/wishlist" aria-label="Wishlist"><Heart size={20} />{wishlist.length > 0 && <span>{wishlist.length}</span>}</Link><Link className="icon-button counted-icon" to="/cart" aria-label="Shopping bag"><ShoppingBag size={20} />{cartCount > 0 && <span>{cartCount}</span>}</Link><button className="icon-button mobile-menu" aria-label="Toggle navigation" aria-expanded={open} aria-controls="main-navigation" onClick={() => { setOpen(!open); setMobileSearchOpen(false) }}>{open ? <X /> : <Menu />}</button></div>
     </div></header>
