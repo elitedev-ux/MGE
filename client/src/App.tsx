@@ -14,8 +14,8 @@ import { whatsappCheckoutUrl } from './checkout'
 import { Button } from './components/ui/button'
 
 const SEARCH_ALIASES: Record<string, string[]> = {
+  sam: ['sam', 'samsung', 'galaxy', 'android'],
   apple: ['apple', 'iphone', 'ios', 'ipad', 'macbook', 'airpods'],
-  samsung: ['samsung', 'galaxy', 'android'],
   google: ['google', 'pixel'],
   laptop: ['laptop', 'notebook', 'computer', 'pc', 'macbook'],
   audio: ['audio', 'headphone', 'headphones', 'earbud', 'earbuds', 'speaker', 'airpods'],
@@ -36,13 +36,15 @@ function expandSearchTerms(value: string) {
   if (!normalizedQuery) return []
 
   const terms = new Set(normalizedQuery.split(' ').filter(Boolean))
+  const aliasGroups = Object.values(SEARCH_ALIASES)
+
   for (const term of Array.from(terms)) {
-    for (const aliasList of Object.values(SEARCH_ALIASES)) {
-      if (term === aliasList[0] || aliasList.includes(term)) {
-        aliasList.forEach(alias => terms.add(alias))
-      }
+    for (const aliasList of aliasGroups) {
+      const matched = aliasList.some(alias => alias === term || alias.startsWith(term) || term.startsWith(alias))
+      if (matched) aliasList.forEach(alias => terms.add(alias))
     }
   }
+
   return Array.from(terms)
 }
 
@@ -58,6 +60,7 @@ function scoreProductMatch(product: Product, query: string) {
 
   terms.forEach(term => {
     if (text.includes(term)) score += 12
+    if (normalizeSearch(product.name).includes(term) || normalizeSearch(product.brand).includes(term) || normalizeSearch(product.category).includes(term)) score += 6
   })
 
   if (!normalizedQuery) return 0
@@ -70,13 +73,14 @@ function scoreProductMatch(product: Product, query: string) {
   if (brand.includes(normalizedQuery)) score += 24
   if (category.includes(normalizedQuery)) score += 18
 
+  if (normalizedQuery.includes('sam') && (brand.includes('samsung') || productName.includes('galaxy') || category.includes('smartphone'))) score += 25
   if (normalizedQuery.includes('apple') && (brand.includes('apple') || productName.includes('iphone'))) score += 20
   if (normalizedQuery.includes('iphone') && (productName.includes('iphone') || brand.includes('apple'))) score += 24
   if (normalizedQuery.includes('phone') && category.includes('smartphone')) score += 14
   if (normalizedQuery.includes('series') && productName.includes('series')) score += 8
 
   const queryParts = normalizedQuery.split(' ').filter(Boolean)
-  const allPartsMatch = queryParts.every(part => productName.includes(part) || brand.includes(part) || category.includes(part))
+  const allPartsMatch = queryParts.every(part => productName.includes(part) || brand.includes(part) || category.includes(part) || text.includes(part))
   if (allPartsMatch && queryParts.length > 1) score += 16
 
   return score
@@ -164,7 +168,7 @@ function Shop() {
   const filtered = matchingProducts.filter(p => (!category || p.category === category) && p.price <= max && (!params.get('deals') || p.original) && (!params.get('brand') || p.brand === params.get('brand'))).sort((a, b) => sort === 'price-low' ? a.price - b.price : sort === 'price-high' ? b.price - a.price : sort === 'newest' ? products.indexOf(b) - products.indexOf(a) : 0)
   const related = query && !queryMatches.length ? findRelatedProducts(data, query) : []
   const displayedProducts = filtered.length ? filtered : related
-  return <section className="container page"><p className="purple-kicker">THE MGE COLLECTION</p><h1>{params.get('deals') ? 'Better prices. Same great tech.' : category || (query ? `Search: ${query}` : 'Find your next favourite.')}</h1><p className="muted">Explore the MGE collection. Placeholder prices are labelled; confirm availability before ordering.</p><div className="shop-layout"><aside className="filters"><h3>Categories</h3>{['', ...categories].map(c => <button className={category === c ? 'selected' : ''} key={c} onClick={() => update('category', c)}>{c || 'All products'}<ChevronRight size={14} /></button>)}<label>Brand<select value={params.get('brand') || ''} onChange={e => update('brand', e.target.value)}><option value="">All brands</option>{[...new Set(products.map(p => p.brand))].map(b => <option key={b}>{b}</option>)}</select></label><label>Maximum price <span>{money(max)}</span><input type="range" min="0" max="3000000" step="1000" value={max} onChange={e => update('max', e.target.value)} /></label><Button variant="ghost" onClick={() => setParams({})}>Reset filters</Button></aside><div><div className="shop-toolbar"><form onSubmit={e => e.preventDefault()}><Search size={17} /><input value={query} onChange={e => update('q', e.target.value)} placeholder="Search products or specifications" aria-label="Search collection" /></form><select aria-label="Sort products" value={sort} onChange={e => update('sort', e.target.value)}><option value="featured">Featured</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option><option value="newest">Newest arrivals</option></select></div><p className="muted small">{filtered.length ? `${filtered.length} products` : related.length ? `No exact matches for “${query}”. Related products:` : '0 products'}</p><div className="product-grid shop-grid">{displayedProducts.map(p => <ProductCard key={p.id} product={p} />)}</div>{!displayedProducts.length && <div className="empty"><h2>No products found.</h2><p>Try a different search or reset your filters.</p><Button onClick={() => setParams({})}>Reset filters</Button></div>}</div></div></section>
+  return <section className="container page"><p className="purple-kicker">THE MGE COLLECTION</p><h1>{params.get('deals') ? 'Better prices. Same great tech.' : category || (query ? `Search: ${query}` : 'Find your next favourite.')}</h1><p className="muted">Explore the MGE collection. Placeholder prices are labelled; confirm availability before ordering.</p><div className="shop-layout"><aside className="filters"><label>Brand<select value={params.get('brand') || ''} onChange={e => update('brand', e.target.value)}><option value="">All brands</option>{[...new Set(products.map(p => p.brand))].map(b => <option key={b}>{b}</option>)}</select></label><label>Maximum price <span>{money(max)}</span><input type="range" min="0" max="3000000" step="1000" value={max} onChange={e => update('max', e.target.value)} /></label><Button variant="ghost" onClick={() => setParams({})}>Reset filters</Button><h3>Categories</h3>{['', ...categories].map(c => <button className={category === c ? 'selected' : ''} key={c} onClick={() => update('category', c)}>{c || 'All products'}<ChevronRight size={14} /></button>)}</aside><div><div className="shop-toolbar"><form onSubmit={e => e.preventDefault()}><Search size={17} /><input value={query} onChange={e => update('q', e.target.value)} placeholder="Search products or specifications" aria-label="Search collection" /></form><select aria-label="Sort products" value={sort} onChange={e => update('sort', e.target.value)}><option value="featured">Featured</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option><option value="newest">Newest arrivals</option></select></div><p className="muted small">{filtered.length ? `${filtered.length} products` : related.length ? `No exact matches for “${query}”. Related products:` : '0 products'}</p><div className="product-grid shop-grid">{displayedProducts.map(p => <ProductCard key={p.id} product={p} />)}</div>{!displayedProducts.length && <div className="empty"><h2>No products found.</h2><p>Try a different search or reset your filters.</p><Button onClick={() => setParams({})}>Reset filters</Button></div>}</div></div></section>
 }
 
 function ProductPage() {
